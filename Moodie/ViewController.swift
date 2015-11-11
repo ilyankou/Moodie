@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var moodButtons: [UIButton]!
+    @IBOutlet weak var webViewBackground: UIWebView!
     
     @IBAction func buttonClicked(sender: AnyObject) {
         let clicked = sender as! UIButton
@@ -22,9 +23,11 @@ class ViewController: UIViewController {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let url = NSBundle.mainBundle().URLForResource("background", withExtension: "html")!
+        webViewBackground.loadRequest(NSURLRequest(URL: url))
     }
 
     override func didReceiveMemoryWarning() {

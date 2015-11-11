@@ -12,6 +12,8 @@
 		EE1A3BF11BF2F1070092DE1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE1A3BEF1BF2F1070092DE1C /* Main.storyboard */; };
 		EE1A3BF31BF2F1080092DE1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE1A3BF21BF2F1080092DE1C /* Assets.xcassets */; };
 		EE1A3BF61BF2F1080092DE1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE1A3BF41BF2F1080092DE1C /* LaunchScreen.storyboard */; };
+		EE237F591BF3A6DA00D71167 /* background.gif in Resources */ = {isa = PBXBuildFile; fileRef = EE237F581BF3A6DA00D71167 /* background.gif */; };
+		EE237F5B1BF3CA7E00D71167 /* background.html in Resources */ = {isa = PBXBuildFile; fileRef = EE237F5A1BF3CA7E00D71167 /* background.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		EE1A3BF21BF2F1080092DE1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE1A3BF51BF2F1080092DE1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE1A3BF71BF2F1080092DE1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE237F581BF3A6DA00D71167 /* background.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = background.gif; sourceTree = "<group>"; };
+		EE237F5A1BF3CA7E00D71167 /* background.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = background.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 		EE1A3BEA1BF2F1070092DE1C /* Moodie */ = {
 			isa = PBXGroup;
 			children = (
+				EE237F5A1BF3CA7E00D71167 /* background.html */,
+				EE237F581BF3A6DA00D71167 /* background.gif */,
 				EE1A3BEB1BF2F1070092DE1C /* AppDelegate.swift */,
 				EE1A3BED1BF2F1070092DE1C /* ViewController.swift */,
 				EE1A3BEF1BF2F1070092DE1C /* Main.storyboard */,
@@ -124,6 +130,8 @@
 			files = (
 				EE1A3BF61BF2F1080092DE1C /* LaunchScreen.storyboard in Resources */,
 				EE1A3BF31BF2F1080092DE1C /* Assets.xcassets in Resources */,
+				EE237F591BF3A6DA00D71167 /* background.gif in Resources */,
+				EE237F5B1BF3CA7E00D71167 /* background.html in Resources */,
 				EE1A3BF11BF2F1070092DE1C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +294,7 @@
 				EE1A3BFC1BF2F1080092DE1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
