@@ -10,6 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var moodButtons: [UIButton]!
+    
+    @IBAction func buttonClicked(sender: AnyObject) {
+        let clicked = sender as! UIButton
+        if (clicked.backgroundColor != UIColor.whiteColor()) {
+            for button in self.moodButtons {
+                button.backgroundColor = nil
+                clicked.backgroundColor = UIColor.whiteColor();
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

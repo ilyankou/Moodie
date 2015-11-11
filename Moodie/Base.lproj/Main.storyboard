@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Moodie" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,130 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVe-tY-Vn4" userLabel="Screen One">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="How do you feel today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k68-eY-jPl">
+                                        <rect key="frame" x="151" y="16" width="300" height="30"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="EcN-c5-16o"/>
+                                            <constraint firstAttribute="width" constant="300" id="l6F-hw-An2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SBX-EC-xBX" userLabel="MoodButtons">
+                                        <rect key="frame" x="125" y="66" width="350" height="528"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTz-cb-dHk" userLabel="happy">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="156"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                                                <state key="normal" title="kkkkkk" image="mood-happy">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UOE-dq-zRV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uci-af-Q1R" userLabel="sad">
+                                                <rect key="frame" x="190" y="0.0" width="160" height="156"/>
+                                                <animations/>
+                                                <state key="normal" image="mood-happy"/>
+                                                <connections>
+                                                    <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vKs-sh-1qj"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1e-W1-rtU" userLabel="angry">
+                                                <rect key="frame" x="0.0" y="186" width="160" height="156"/>
+                                                <animations/>
+                                                <state key="normal" image="mood-happy"/>
+                                                <connections>
+                                                    <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7qN-Qp-A3a"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmi-8K-e6v" userLabel="in love">
+                                                <rect key="frame" x="190" y="186" width="160" height="156"/>
+                                                <animations/>
+                                                <state key="normal" image="mood-happy"/>
+                                                <connections>
+                                                    <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="627-qO-5kQ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffl-cb-smz" userLabel="sleepy">
+                                                <rect key="frame" x="0.0" y="372" width="160" height="156"/>
+                                                <animations/>
+                                                <state key="normal" image="mood-happy"/>
+                                                <connections>
+                                                    <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="if8-4n-HcZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J4n-rF-LX4" userLabel="energetic">
+                                                <rect key="frame" x="190" y="372" width="160" height="156"/>
+                                                <animations/>
+                                                <state key="normal" image="mood-happy"/>
+                                                <connections>
+                                                    <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jqQ-8z-I5d"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="J4n-rF-LX4" secondAttribute="bottom" id="4QB-dC-IaR"/>
+                                            <constraint firstItem="eTz-cb-dHk" firstAttribute="leading" secondItem="C1e-W1-rtU" secondAttribute="leading" id="4yS-WJ-AO8"/>
+                                            <constraint firstItem="C1e-W1-rtU" firstAttribute="centerY" secondItem="SBX-EC-xBX" secondAttribute="centerY" id="AcM-pM-008"/>
+                                            <constraint firstItem="jmi-8K-e6v" firstAttribute="leading" secondItem="uci-af-Q1R" secondAttribute="leading" id="DAM-Rj-x4d"/>
+                                            <constraint firstItem="ffl-cb-smz" firstAttribute="leading" secondItem="C1e-W1-rtU" secondAttribute="leading" id="F1n-9f-ktF"/>
+                                            <constraint firstItem="C1e-W1-rtU" firstAttribute="top" secondItem="jmi-8K-e6v" secondAttribute="top" id="K35-JI-w6u"/>
+                                            <constraint firstAttribute="trailing" secondItem="jmi-8K-e6v" secondAttribute="trailing" id="dqf-UJ-KLv"/>
+                                            <constraint firstItem="eTz-cb-dHk" firstAttribute="top" secondItem="SBX-EC-xBX" secondAttribute="top" id="nIU-EI-gqJ"/>
+                                            <constraint firstItem="eTz-cb-dHk" firstAttribute="leading" secondItem="SBX-EC-xBX" secondAttribute="leading" id="ofy-xe-Cla"/>
+                                            <constraint firstItem="J4n-rF-LX4" firstAttribute="top" secondItem="ffl-cb-smz" secondAttribute="top" id="qIR-Qv-xZD"/>
+                                            <constraint firstItem="eTz-cb-dHk" firstAttribute="top" secondItem="uci-af-Q1R" secondAttribute="top" id="shs-r8-GZO"/>
+                                            <constraint firstItem="uci-af-Q1R" firstAttribute="leading" secondItem="eTz-cb-dHk" secondAttribute="trailing" constant="30" id="uh3-Hs-CHr"/>
+                                            <constraint firstItem="C1e-W1-rtU" firstAttribute="top" secondItem="eTz-cb-dHk" secondAttribute="bottom" constant="30" id="uva-EU-9oM"/>
+                                            <constraint firstItem="J4n-rF-LX4" firstAttribute="leading" secondItem="jmi-8K-e6v" secondAttribute="leading" id="zvI-Gc-fVT"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="SBX-EC-xBX" firstAttribute="centerY" secondItem="QVe-tY-Vn4" secondAttribute="centerY" constant="30" id="GvC-Gn-e6E"/>
+                                    <constraint firstItem="SBX-EC-xBX" firstAttribute="top" secondItem="k68-eY-jPl" secondAttribute="bottom" constant="20" id="TYw-wO-OD5"/>
+                                    <constraint firstItem="k68-eY-jPl" firstAttribute="centerX" secondItem="SBX-EC-xBX" secondAttribute="centerX" id="tyW-ju-fQK"/>
+                                    <constraint firstItem="SBX-EC-xBX" firstAttribute="centerX" secondItem="QVe-tY-Vn4" secondAttribute="centerX" id="vJi-oH-gdl"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="QVe-tY-Vn4" secondAttribute="trailing" id="QKi-UE-GQv"/>
+                            <constraint firstItem="QVe-tY-Vn4" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="SSu-Ms-G9D"/>
+                            <constraint firstItem="QVe-tY-Vn4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="VR1-tn-YAY"/>
+                            <constraint firstItem="QVe-tY-Vn4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wzH-oL-B01"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outletCollection property="moodButtons" destination="eTz-cb-dHk" collectionClass="NSMutableArray" id="CUQ-fB-oH0"/>
+                        <outletCollection property="moodButtons" destination="uci-af-Q1R" collectionClass="NSMutableArray" id="dh0-oV-xTc"/>
+                        <outletCollection property="moodButtons" destination="jmi-8K-e6v" collectionClass="NSMutableArray" id="X4A-89-yeE"/>
+                        <outletCollection property="moodButtons" destination="J4n-rF-LX4" collectionClass="NSMutableArray" id="7bA-H6-GTa"/>
+                        <outletCollection property="moodButtons" destination="ffl-cb-smz" collectionClass="NSMutableArray" id="BzS-67-rDo"/>
+                        <outletCollection property="moodButtons" destination="C1e-W1-rtU" collectionClass="NSMutableArray" id="CMJ-NE-4Fo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="306" y="333"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="mood-happy" width="160" height="156"/>
+    </resources>
 </document>
