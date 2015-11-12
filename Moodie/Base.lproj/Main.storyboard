@@ -25,7 +25,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVe-tY-Vn4" userLabel="Screen One">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="How do you feel today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k68-eY-jPl">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="How are you today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k68-eY-jPl">
                                         <rect key="frame" x="151" y="16" width="300" height="30"/>
                                         <animations/>
                                         <constraints>
@@ -36,64 +36,64 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SBX-EC-xBX" userLabel="MoodButtons">
-                                        <rect key="frame" x="125" y="66" width="350" height="528"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SBX-EC-xBX" userLabel="MoodButtons">
+                                        <rect key="frame" x="125" y="60" width="350" height="540"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTz-cb-dHk" userLabel="happy">
-                                                <rect key="frame" x="0.0" y="0.0" width="160" height="156"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="1"/>
-                                                <state key="normal" image="mood-happy">
+                                                <state key="normal" image="happy-button">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UOE-dq-zRV"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uci-af-Q1R" userLabel="sad">
-                                                <rect key="frame" x="190" y="0.0" width="160" height="156"/>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uci-af-Q1R" userLabel="sad">
+                                                <rect key="frame" x="190" y="0.0" width="160" height="160"/>
                                                 <animations/>
-                                                <state key="normal" image="mood-happy">
+                                                <state key="normal" image="sad-button">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vKs-sh-1qj"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1e-W1-rtU" userLabel="angry">
-                                                <rect key="frame" x="0.0" y="186" width="160" height="156"/>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1e-W1-rtU" userLabel="angry">
+                                                <rect key="frame" x="0.0" y="190" width="160" height="160"/>
                                                 <animations/>
-                                                <state key="normal" image="mood-happy">
+                                                <state key="normal" image="angry-button">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7qN-Qp-A3a"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmi-8K-e6v" userLabel="in love">
-                                                <rect key="frame" x="190" y="186" width="160" height="156"/>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmi-8K-e6v" userLabel="inlove">
+                                                <rect key="frame" x="190" y="190" width="160" height="160"/>
                                                 <animations/>
-                                                <state key="normal" image="mood-happy">
+                                                <state key="normal" image="inlove-button">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="627-qO-5kQ"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffl-cb-smz" userLabel="sleepy">
-                                                <rect key="frame" x="0.0" y="372" width="160" height="156"/>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffl-cb-smz" userLabel="cool">
+                                                <rect key="frame" x="0.0" y="384" width="160" height="160"/>
                                                 <animations/>
-                                                <state key="normal" image="mood-happy">
+                                                <state key="normal" image="cool-button">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="if8-4n-HcZ"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J4n-rF-LX4" userLabel="energetic">
-                                                <rect key="frame" x="190" y="372" width="160" height="156"/>
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J4n-rF-LX4" userLabel="sleepy">
+                                                <rect key="frame" x="190" y="384" width="160" height="156"/>
                                                 <animations/>
-                                                <state key="normal" image="mood-happy">
+                                                <state key="normal" image="sleepy-button">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -145,13 +145,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="angryButton" destination="C1e-W1-rtU" id="vUR-fy-vpL"/>
+                        <outlet property="coolButton" destination="ffl-cb-smz" id="nbh-AK-AwS"/>
+                        <outlet property="happyButton" destination="eTz-cb-dHk" id="v5t-Co-Anw"/>
+                        <outlet property="inloveButton" destination="jmi-8K-e6v" id="5pe-ls-uWc"/>
+                        <outlet property="sadButton" destination="uci-af-Q1R" id="8f9-Fc-2E6"/>
+                        <outlet property="sleepyButton" destination="J4n-rF-LX4" id="O2a-rm-zwg"/>
                         <outlet property="webViewBackground" destination="MkR-OY-eeJ" id="n8O-BD-Mec"/>
-                        <outletCollection property="moodButtons" destination="eTz-cb-dHk" collectionClass="NSMutableArray" id="CUQ-fB-oH0"/>
-                        <outletCollection property="moodButtons" destination="uci-af-Q1R" collectionClass="NSMutableArray" id="dh0-oV-xTc"/>
-                        <outletCollection property="moodButtons" destination="jmi-8K-e6v" collectionClass="NSMutableArray" id="X4A-89-yeE"/>
-                        <outletCollection property="moodButtons" destination="J4n-rF-LX4" collectionClass="NSMutableArray" id="7bA-H6-GTa"/>
-                        <outletCollection property="moodButtons" destination="ffl-cb-smz" collectionClass="NSMutableArray" id="BzS-67-rDo"/>
-                        <outletCollection property="moodButtons" destination="C1e-W1-rtU" collectionClass="NSMutableArray" id="CMJ-NE-4Fo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -160,6 +160,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="mood-happy" width="160" height="156"/>
+        <image name="angry-button" width="161" height="160"/>
+        <image name="cool-button" width="160" height="160"/>
+        <image name="happy-button" width="160" height="160"/>
+        <image name="inlove-button" width="161" height="160"/>
+        <image name="sad-button" width="160" height="160"/>
+        <image name="sleepy-button" width="160" height="160"/>
     </resources>
 </document>
