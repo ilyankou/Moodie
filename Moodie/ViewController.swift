@@ -11,6 +11,16 @@ import UIKit
 class ViewController: UIViewController {
     
     var moodButtons : [(UIButton, String, String, Int)] = []
+    var currentView = 1
+    let screenWidth = UIScreen.mainScreen().bounds.size.width
+    
+    @IBOutlet weak var webViewBackground: UIWebView!
+    
+    @IBOutlet weak var viewOne: UIView!
+    @IBOutlet weak var keywordSet1: UIView!
+    
+    @IBOutlet weak var viewsContainer: UIView!
+    @IBOutlet weak var viewsContainerLeading: NSLayoutConstraint!
     
     @IBOutlet weak var happyButton: UIButton!
     @IBOutlet weak var sadButton: UIButton!
@@ -18,8 +28,29 @@ class ViewController: UIViewController {
     @IBOutlet weak var inloveButton: UIButton!
     @IBOutlet weak var coolButton: UIButton!
     @IBOutlet weak var sleepyButton: UIButton!
+   
     
-    @IBOutlet weak var webViewBackground: UIWebView!
+    
+    @IBAction func nextView(sender: AnyObject) {
+        if currentView == 1 || currentView == 2 {
+            UIView.animateWithDuration(0.5, animations: {
+                self.viewsContainerLeading.constant += self.screenWidth
+                self.viewsContainer.layoutIfNeeded()
+
+            })
+            currentView++;
+        }
+    }
+    
+    @IBAction func prevView(sender: AnyObject) {
+        if currentView == 2 || currentView == 3 {
+            UIView.animateWithDuration(0.5, animations: {
+                self.viewsContainerLeading.constant -= self.screenWidth
+                self.viewsContainer.layoutIfNeeded()
+            })
+            currentView--;
+        }
+    }
     
     
     @IBAction func buttonClicked(sender: AnyObject) {
@@ -40,12 +71,12 @@ class ViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let url = NSBundle.mainBundle().URLForResource("background", withExtension: "html")!
         webViewBackground.loadRequest(NSURLRequest(URL: url))
+        webViewBackground.scrollView.scrollEnabled = false;
         
         moodButtons.append((happyButton, "happy-button", "happy-button-reverse", 0))
         moodButtons.append((sadButton, "sad-button", "sad-button-reverse", 0))
@@ -55,6 +86,7 @@ class ViewController: UIViewController {
         moodButtons.append((sleepyButton, "sleepy-button", "sleepy-button-reverse", 0))
         
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
