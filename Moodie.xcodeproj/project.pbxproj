@@ -12,6 +12,9 @@
 		EE1A3BF11BF2F1070092DE1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE1A3BEF1BF2F1070092DE1C /* Main.storyboard */; };
 		EE1A3BF31BF2F1080092DE1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE1A3BF21BF2F1080092DE1C /* Assets.xcassets */; };
 		EE1A3BF61BF2F1080092DE1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE1A3BF41BF2F1080092DE1C /* LaunchScreen.storyboard */; };
+		EE237F591BF3A6DA00D71167 /* background.gif in Resources */ = {isa = PBXBuildFile; fileRef = EE237F581BF3A6DA00D71167 /* background.gif */; };
+		EE237F5B1BF3CA7E00D71167 /* background.html in Resources */ = {isa = PBXBuildFile; fileRef = EE237F5A1BF3CA7E00D71167 /* background.html */; };
+		EEE47FCB1BF6C5F20012D304 /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE47FCA1BF6C5F20012D304 /* Keywords.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		EE1A3BF21BF2F1080092DE1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE1A3BF51BF2F1080092DE1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE1A3BF71BF2F1080092DE1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE237F581BF3A6DA00D71167 /* background.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = background.gif; sourceTree = "<group>"; };
+		EE237F5A1BF3CA7E00D71167 /* background.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = background.html; sourceTree = "<group>"; };
+		EEE47FCA1BF6C5F20012D304 /* Keywords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keywords.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +60,11 @@
 		EE1A3BEA1BF2F1070092DE1C /* Moodie */ = {
 			isa = PBXGroup;
 			children = (
+				EE237F5A1BF3CA7E00D71167 /* background.html */,
+				EE237F581BF3A6DA00D71167 /* background.gif */,
 				EE1A3BEB1BF2F1070092DE1C /* AppDelegate.swift */,
 				EE1A3BED1BF2F1070092DE1C /* ViewController.swift */,
+				EEE47FCA1BF6C5F20012D304 /* Keywords.swift */,
 				EE1A3BEF1BF2F1070092DE1C /* Main.storyboard */,
 				EE1A3BF21BF2F1080092DE1C /* Assets.xcassets */,
 				EE1A3BF41BF2F1080092DE1C /* LaunchScreen.storyboard */,
@@ -96,6 +105,7 @@
 				TargetAttributes = {
 					EE1A3BE71BF2F1070092DE1C = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = JW33QS6MBV;
 					};
 				};
 			};
@@ -124,6 +134,8 @@
 			files = (
 				EE1A3BF61BF2F1080092DE1C /* LaunchScreen.storyboard in Resources */,
 				EE1A3BF31BF2F1080092DE1C /* Assets.xcassets in Resources */,
+				EE237F591BF3A6DA00D71167 /* background.gif in Resources */,
+				EE237F5B1BF3CA7E00D71167 /* background.html in Resources */,
 				EE1A3BF11BF2F1070092DE1C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEE47FCB1BF6C5F20012D304 /* Keywords.swift in Sources */,
 				EE1A3BEE1BF2F1070092DE1C /* ViewController.swift in Sources */,
 				EE1A3BEC1BF2F1070092DE1C /* AppDelegate.swift in Sources */,
 			);
@@ -249,10 +262,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Moodie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TrinityCollege.Moodie;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.trincoll.moodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -260,10 +276,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Moodie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TrinityCollege.Moodie;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.trincoll.moodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -286,6 +305,7 @@
 				EE1A3BFC1BF2F1080092DE1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
