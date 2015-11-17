@@ -10,7 +10,7 @@ import UIKit
 
 class Properties: NSObject {
     
-    var words = [
+    var entries = [
         ("long", 1, 0, 3),
         ("short", 1, 0, 3),
         ("average length", 1, 0, 3),
@@ -18,19 +18,19 @@ class Properties: NSObject {
         ("silent", 1, 0, 1),
         ("black and white", 1, 0, 1),
         ("before 1900", 1, 0, 2),
-        ("1900-1960s", 1, 0, 2),
-        ("1970-2000s", 1, 0, 2),
-        ("2000-2010s", 1, 0, 2),
+        ("1900-1960", 1, 0, 2),
+        ("1970-2000", 1, 0, 2),
+        ("2000-2010", 1, 0, 2),
         ("2015", 1, 0, 3)
     ]
     
     func changeStatus(tag: Int) -> Int {
-        if (self.words[tag].2 == 0) {
-            self.words[tag].2 = 1
+        if (self.entries[tag].2 == 0) {
+            self.entries[tag].2 = 1
             return 1
         }
         else {
-            self.words[tag].2 = 0
+            self.entries[tag].2 = 0
             return 0
         }
     }
@@ -38,7 +38,7 @@ class Properties: NSObject {
     func propertyValue(word: String, index: Int) -> Int {
         var value = 0
         //for var i = 0; i < words.count; i++ {
-            let importance = self.words[index].3
+            let importance = self.entries[index].3
             
             switch(importance) {
                 case 3:

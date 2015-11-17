@@ -20,8 +20,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var webViewBackground: UIWebView!
     
     @IBOutlet weak var viewOne: UIView!
-    @IBOutlet weak var keywordSet1: UIView!
-    @IBOutlet weak var propSet1: UIView!
+    
+    @IBOutlet weak var keywordsSet: UIView!
+    @IBOutlet weak var propertiesSet: UIView!
+    
     
     @IBOutlet weak var viewsContainer: UIView!
     @IBOutlet weak var viewsContainerLeading: NSLayoutConstraint!
@@ -32,7 +34,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var inloveButton: UIButton!
     @IBOutlet weak var coolButton: UIButton!
     @IBOutlet weak var sleepyButton: UIButton!
-   
     
     
     @IBAction func nextView(sender: AnyObject) {
@@ -80,7 +81,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     func keywordSelected(sender: UIButton) {
         if keywords.changeStatus(sender.tag) == 0 {
             sender.backgroundColor = nil
@@ -104,30 +104,31 @@ class ViewController: UIViewController {
     }
     
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        if motion == .MotionShake && currentView == 2 {
-            for i in 0...(keywords.entries.count-1) {
-                keywords.entries[i].2 = 1
-            }
-            
-            for button in keywordSet1.subviews {
-                print("lol\n")
-                if button as? UIButton != nil {
-                    keywordSelected(button as! UIButton)
+        if motion == .MotionShake {
+            if (currentView == 2) {
+                for i in 0...(keywords.entries.count-1) {
+                    keywords.entries[i].2 = 1
+                }
+                
+                for button in keywordsSet.subviews {
+                    if button as? UIButton != nil {
+                        keywordSelected(button as! UIButton)
+                    }
                 }
             }
-        }
-        
-        if motion == .MotionShake && currentView == 2 {
-            for var i = 0; i < properties.words.count; i++ {
-                properties.words[i].2 = 1
+            
+            if (currentView == 3) {
+                for i in 0...(properties.entries.count-1) {
+                    properties.entries[i].2 = 1
+                }
+                
+                for button in propertiesSet.subviews {
+                    if button as? UIButton != nil {
+                        propertySelected(button as! UIButton)
+                    }
+                }
             }
-        }
-        
-        for button in propSet1.subviews {
-            print("lol\n")
-            if button as? UIButton != nil {
-                propertySelected(button as! UIButton)
-            }
+            
         }
     }
     
@@ -151,11 +152,11 @@ class ViewController: UIViewController {
         var y: CGFloat = 0
         var w: CGFloat = 0
         var h: CGFloat = 0
+
         
         for kword in keywords.entries {
             let button = UIButton()
-            
-            w = 11 * CGFloat((kword.0).characters.count)
+            w = 9 * CGFloat((kword.0).characters.count) + 14
             h = 30
             
             if x + w > self.screenWidth - 20 {
@@ -174,39 +175,36 @@ class ViewController: UIViewController {
             i++
             x += w + 10
             
-            self.keywordSet1.addSubview(button)
-            
+            self.keywordsSet.addSubview(button)
+
         }
         
-        var j = 0
-        var x1: CGFloat = 0
-        var y1: CGFloat = 0
-        var w1: CGFloat = 0
-        var h1: CGFloat = 0
+        x = 0;
+        y = 0;
+        i = 0;
         
-        for prop in properties.words {
-            let button1 = UIButton()
+        for prop in properties.entries {
+            let button = UIButton()
+            w = 9 * CGFloat((prop.0).characters.count) + 14
+            h = 30
             
-            w1 = 11 * CGFloat((prop.0).characters.count)
-            h1 = 30
-            
-            if x1 + w1 > self.screenWidth - 20 {
-                x1 = 0
-                y1 += h1 + 10
+            if x + w > self.screenWidth - 20 {
+                x = 0
+                y += h + 10
             }
             
-            button1.frame = CGRectMake(x1, y1, w1, h1)
-            button1.setTitle(prop.0, forState: UIControlState.Normal)
-            button1.addTarget(self, action: "propertySelected:", forControlEvents: UIControlEvents.TouchUpInside)
-            button1.tag = j
+            button.frame = CGRectMake(x, y, w, h)
+            button.setTitle(prop.0, forState: UIControlState.Normal)
+            button.addTarget(self, action: "propertySelected:", forControlEvents: UIControlEvents.TouchUpInside)
+            button.tag = i
             
-            button1.layer.borderColor = UIColor.whiteColor().CGColor
-            button1.layer.borderWidth = 2
+            button.layer.borderColor = UIColor.whiteColor().CGColor
+            button.layer.borderWidth = 2
             
-            j++
-            x1 += w1 + 10
+            i++
+            x += w + 10
             
-            self.keywordSet1.addSubview(button1)
+            self.propertiesSet.addSubview(button)
             
         }
         
