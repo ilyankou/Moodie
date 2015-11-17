@@ -2,17 +2,19 @@
 //  ViewController.swift
 //  Moodie
 //
-//  Created by Ilya Ilyankou on 11/10/15.
-//  Copyright © 2015 Ilya Ilyankou. All rights reserved.
+//  Created by Ilya Ilyankou and Anastatija Mensikova on 11/10/15.
+//  Copyright © 2015 Ilya Ilyankou and Anastatija Mensikova. All rights reserved.
 //
 
 import UIKit
 
 class ViewController: UIViewController {
     
+    let KEYWORDS_NUMBER = 35;
+    let PROPERTIES_NUMBER = 11;
+    
     var moodButtons : [(UIButton, String, String, Int)] = []
     var keywords = Keywords()
-    var properties = Properties()
     var currentView = 1
     var allowedToSwipe = 0
     let screenWidth = UIScreen.mainScreen().bounds.size.width
@@ -35,6 +37,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var coolButton: UIButton!
     @IBOutlet weak var sleepyButton: UIButton!
     
+    @IBOutlet weak var pickMovieButton: UIButton!
     
     @IBAction func nextView(sender: AnyObject) {
         if allowedToSwipe == 0 {
@@ -83,30 +86,21 @@ class ViewController: UIViewController {
     
     func keywordSelected(sender: UIButton) {
         if keywords.changeStatus(sender.tag) == 0 {
-            sender.backgroundColor = nil
+            //sender.backgroundColor = nil
+            sender.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
             sender.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         }
         else {
-            sender.backgroundColor = UIColor.whiteColor()
-            sender.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
-        }
-    }
-    
-    func propertySelected(sender: UIButton) {
-        if properties.changeStatus(sender.tag) == 0 {
-            sender.backgroundColor = nil
-            sender.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        }
-        else {
-            sender.backgroundColor = UIColor.whiteColor()
-            sender.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+            //sender.backgroundColor = UIColor.whiteColor()
+            sender.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+            sender.setTitleColor(UIColor(red: 40/255, green: 40/255, blue: 40/255, alpha: 1), forState: UIControlState.Normal)
         }
     }
     
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
         if motion == .MotionShake {
             if (currentView == 2) {
-                for i in 0...(keywords.entries.count-1) {
+                for i in 0...(KEYWORDS_NUMBER-1) {
                     keywords.entries[i].2 = 1
                 }
                 
@@ -118,13 +112,13 @@ class ViewController: UIViewController {
             }
             
             if (currentView == 3) {
-                for i in 0...(properties.entries.count-1) {
-                    properties.entries[i].2 = 1
+                for i in KEYWORDS_NUMBER...(keywords.entries.count-1) {
+                    keywords.entries[i].2 = 1
                 }
                 
                 for button in propertiesSet.subviews {
                     if button as? UIButton != nil {
-                        propertySelected(button as! UIButton)
+                        keywordSelected(button as! UIButton)
                     }
                 }
             }
@@ -156,57 +150,42 @@ class ViewController: UIViewController {
         
         for kword in keywords.entries {
             let button = UIButton()
-            w = 9 * CGFloat((kword.0).characters.count) + 14
+            w = 9 * CGFloat((kword.0).characters.count) + 15
             h = 30
             
             if x + w > self.screenWidth - 20 {
                 x = 0
                 y += h + 10
+            }
+            
+            if (i == KEYWORDS_NUMBER) {
+                y = 0;
+                x = 0;
             }
                 
             button.frame = CGRectMake(x, y, w, h)
             button.setTitle(kword.0, forState: UIControlState.Normal)
             button.addTarget(self, action: "keywordSelected:", forControlEvents: UIControlEvents.TouchUpInside)
             button.tag = i
+            button.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
             
+            /*
             button.layer.borderColor = UIColor.whiteColor().CGColor
-            button.layer.borderWidth = 2
+            button.layer.borderWidth = 2 */
             
-            i++
-            x += w + 10
-            
-            self.keywordsSet.addSubview(button)
-
-        }
-        
-        x = 0;
-        y = 0;
-        i = 0;
-        
-        for prop in properties.entries {
-            let button = UIButton()
-            w = 9 * CGFloat((prop.0).characters.count) + 14
-            h = 30
-            
-            if x + w > self.screenWidth - 20 {
-                x = 0
-                y += h + 10
+            if (i < KEYWORDS_NUMBER) {
+                self.keywordsSet.addSubview(button)
+            }
+            else {
+                self.propertiesSet.addSubview(button);
             }
             
-            button.frame = CGRectMake(x, y, w, h)
-            button.setTitle(prop.0, forState: UIControlState.Normal)
-            button.addTarget(self, action: "propertySelected:", forControlEvents: UIControlEvents.TouchUpInside)
-            button.tag = i
-            
-            button.layer.borderColor = UIColor.whiteColor().CGColor
-            button.layer.borderWidth = 2
-            
             i++
             x += w + 10
-            
-            self.propertiesSet.addSubview(button)
-            
+
         }
+        pickMovieButton.layer.borderColor = UIColor.whiteColor().CGColor
+        pickMovieButton.layer.borderWidth = 5
         
     }
 
