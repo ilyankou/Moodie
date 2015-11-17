@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var viewOne: UIView!
     @IBOutlet weak var keywordSet1: UIView!
+    @IBOutlet weak var propSet1: UIView!
     
     @IBOutlet weak var viewsContainer: UIView!
     @IBOutlet weak var viewsContainerLeading: NSLayoutConstraint!
@@ -91,6 +92,17 @@ class ViewController: UIViewController {
         }
     }
     
+    func propertySelected(sender: UIButton) {
+        if properties.changeStatus(sender.tag) == 0 {
+            sender.backgroundColor = nil
+            sender.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        }
+        else {
+            sender.backgroundColor = UIColor.whiteColor()
+            sender.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+        }
+    }
+    
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
         if motion == .MotionShake && currentView == 2 {
             for i in 0...(keywords.entries.count-1) {
@@ -102,6 +114,19 @@ class ViewController: UIViewController {
                 if button as? UIButton != nil {
                     keywordSelected(button as! UIButton)
                 }
+            }
+        }
+        
+        if motion == .MotionShake && currentView == 2 {
+            for var i = 0; i < properties.words.count; i++ {
+                properties.words[i].2 = 1
+            }
+        }
+        
+        for button in propSet1.subviews {
+            print("lol\n")
+            if button as? UIButton != nil {
+                propertySelected(button as! UIButton)
             }
         }
     }
@@ -150,6 +175,38 @@ class ViewController: UIViewController {
             x += w + 10
             
             self.keywordSet1.addSubview(button)
+            
+        }
+        
+        var j = 0
+        var x1: CGFloat = 0
+        var y1: CGFloat = 0
+        var w1: CGFloat = 0
+        var h1: CGFloat = 0
+        
+        for prop in properties.words {
+            let button1 = UIButton()
+            
+            w1 = 11 * CGFloat((prop.0).characters.count)
+            h1 = 30
+            
+            if x1 + w1 > self.screenWidth - 20 {
+                x1 = 0
+                y1 += h1 + 10
+            }
+            
+            button1.frame = CGRectMake(x1, y1, w1, h1)
+            button1.setTitle(prop.0, forState: UIControlState.Normal)
+            button1.addTarget(self, action: "propertySelected:", forControlEvents: UIControlEvents.TouchUpInside)
+            button1.tag = j
+            
+            button1.layer.borderColor = UIColor.whiteColor().CGColor
+            button1.layer.borderWidth = 2
+            
+            j++
+            x1 += w1 + 10
+            
+            self.keywordSet1.addSubview(button1)
             
         }
         

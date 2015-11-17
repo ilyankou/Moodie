@@ -143,7 +143,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <color key="tintColor" red="0.74788733610000002" green="1" blue="0.82708970959999994" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="tintColor" red="0.74901960784313726" green="1" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                         </subviews>
                                         <animations/>
@@ -157,8 +157,22 @@
                                     </view>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7GX-RC-AYR" userLabel="ViewThree">
                                         <rect key="frame" x="780" y="236" width="240" height="128"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vrg-zh-QWV" userLabel="PropertiesSet1">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                <animations/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" red="0.74901960779999999" green="1" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
+                                        </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="Vrg-zh-QWV" firstAttribute="top" secondItem="7GX-RC-AYR" secondAttribute="top" constant="-20" id="5H4-vB-DE9"/>
+                                            <constraint firstAttribute="trailing" secondItem="Vrg-zh-QWV" secondAttribute="trailing" constant="-10" id="BsK-mT-Sbc"/>
+                                            <constraint firstItem="Vrg-zh-QWV" firstAttribute="leading" secondItem="7GX-RC-AYR" secondAttribute="leading" constant="-10" id="JPt-c2-BnY"/>
+                                            <constraint firstAttribute="bottom" secondItem="Vrg-zh-QWV" secondAttribute="bottom" constant="-20" id="WZ9-3p-KJ5"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <animations/>
