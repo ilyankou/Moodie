@@ -43,6 +43,10 @@ class Keywords: NSObject {
         ("student", 1, 0),
         ("nightmare", 1, 0),
         ("fear", 1, 0),
+        ("singing", 1, 0),
+        ("gun", 1, 0),
+        ("teenager", 1, 0),
+        
     
     ]
     

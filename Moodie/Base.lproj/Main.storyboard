@@ -158,7 +158,7 @@
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7GX-RC-AYR" userLabel="ViewThree">
                                         <rect key="frame" x="780" y="236" width="240" height="128"/>
                                         <animations/>
-                                        <color key="backgroundColor" red="0.74788733610000002" green="1" blue="0.82708970959999994" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                                 <animations/>

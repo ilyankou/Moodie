@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     var moodButtons : [(UIButton, String, String, Int)] = []
     var keywords = Keywords()
+    var properties = Properties()
     var currentView = 1
     var allowedToSwipe = 0
     let screenWidth = UIScreen.mainScreen().bounds.size.width

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5DDA83171BFAC5B300AF43AF /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA83161BFAC5B300AF43AF /* Properties.swift */; };
 		EE1A3BEC1BF2F1070092DE1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1A3BEB1BF2F1070092DE1C /* AppDelegate.swift */; };
 		EE1A3BEE1BF2F1070092DE1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1A3BED1BF2F1070092DE1C /* ViewController.swift */; };
 		EE1A3BF11BF2F1070092DE1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE1A3BEF1BF2F1070092DE1C /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5DDA83161BFAC5B300AF43AF /* Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
 		EE1A3BE81BF2F1070092DE1C /* Moodie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moodie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE1A3BEB1BF2F1070092DE1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE1A3BED1BF2F1070092DE1C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				EE1A3BEB1BF2F1070092DE1C /* AppDelegate.swift */,
 				EE1A3BED1BF2F1070092DE1C /* ViewController.swift */,
 				EEE47FCA1BF6C5F20012D304 /* Keywords.swift */,
+				5DDA83161BFAC5B300AF43AF /* Properties.swift */,
 				EE1A3BEF1BF2F1070092DE1C /* Main.storyboard */,
 				EE1A3BF21BF2F1080092DE1C /* Assets.xcassets */,
 				EE1A3BF41BF2F1080092DE1C /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DDA83171BFAC5B300AF43AF /* Properties.swift in Sources */,
 				EEE47FCB1BF6C5F20012D304 /* Keywords.swift in Sources */,
 				EE1A3BEE1BF2F1070092DE1C /* ViewController.swift in Sources */,
 				EE1A3BEC1BF2F1070092DE1C /* AppDelegate.swift in Sources */,
