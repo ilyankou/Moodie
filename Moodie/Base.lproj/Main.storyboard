@@ -164,14 +164,27 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <color key="tintColor" red="0.74901960779999999" green="1" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3mV-1q-vvB" userLabel="PickMovieButton">
+                                                <rect key="frame" x="97" y="49" width="46" height="30"/>
+                                                <animations/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <state key="normal" title="PICK A MOVIE!">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="3mV-1q-vvB" secondAttribute="trailing" constant="10" id="316-1H-GNW"/>
                                             <constraint firstItem="Vrg-zh-QWV" firstAttribute="top" secondItem="7GX-RC-AYR" secondAttribute="top" constant="20" id="5H4-vB-DE9"/>
+                                            <constraint firstItem="3mV-1q-vvB" firstAttribute="leading" secondItem="7GX-RC-AYR" secondAttribute="leading" constant="10" id="AdK-3h-Y1s"/>
                                             <constraint firstAttribute="trailing" secondItem="Vrg-zh-QWV" secondAttribute="trailing" constant="10" id="BsK-mT-Sbc"/>
                                             <constraint firstItem="Vrg-zh-QWV" firstAttribute="leading" secondItem="7GX-RC-AYR" secondAttribute="leading" constant="10" id="JPt-c2-BnY"/>
+                                            <constraint firstItem="3mV-1q-vvB" firstAttribute="height" secondItem="7GX-RC-AYR" secondAttribute="height" multiplier="1/5" id="Jr0-XU-dA9"/>
                                             <constraint firstAttribute="bottom" secondItem="Vrg-zh-QWV" secondAttribute="bottom" constant="20" id="WZ9-3p-KJ5"/>
+                                            <constraint firstAttribute="bottom" secondItem="3mV-1q-vvB" secondAttribute="bottom" constant="20" id="sbl-A4-OKw"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -216,6 +229,7 @@
                         <outlet property="happyButton" destination="eTz-cb-dHk" id="v5t-Co-Anw"/>
                         <outlet property="inloveButton" destination="jmi-8K-e6v" id="5pe-ls-uWc"/>
                         <outlet property="keywordsSet" destination="th6-Re-sbb" id="zxC-zp-i5i"/>
+                        <outlet property="pickMovieButton" destination="3mV-1q-vvB" id="3qK-Hf-ZLV"/>
                         <outlet property="propertiesSet" destination="Vrg-zh-QWV" id="s87-J3-E7u"/>
                         <outlet property="sadButton" destination="uci-af-Q1R" id="8f9-Fc-2E6"/>
                         <outlet property="sleepyButton" destination="J4n-rF-LX4" id="O2a-rm-zwg"/>

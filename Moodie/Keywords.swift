@@ -2,8 +2,8 @@
 //  Keywords.swift
 //  Moodie
 //
-//  Created by Ilya Ilyankou on 11/13/15.
-//  Copyright © 2015 Ilya Ilyankou. All rights reserved.
+//  Created by Anastatija Mensikova and Ilya Ilyankou on 11/13/15.
+//  Copyright © 2015 Anastatija Mensikova and Ilya Ilyankou. All rights reserved.
 //
 
 import UIKit
@@ -47,7 +47,17 @@ class Keywords: NSObject {
         ("gun", 1, 0),
         ("teenager", 1, 0),
         
-    
+        ("long", 3, 0),
+        ("short", 3, 0),
+        ("average length", 3, 0),
+        ("foreign", 3, 0),
+        ("silent", 1, 0),
+        ("black and white", 1, 0),
+        ("before 1900", 2, 0),
+        ("1900-1960s", 2, 0),
+        ("1970-2000s", 2, 0),
+        ("2000-2010s", 2, 0),
+        ("2015", 3, 0)
     ]
     
     func changeStatus(tag: Int) -> Int {
