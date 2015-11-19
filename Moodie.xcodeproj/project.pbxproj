@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5DA3E3F11BFE2A74009B167D /* MoviesPicked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3E3F01BFE2A74009B167D /* MoviesPicked.swift */; };
 		5DDA83171BFAC5B300AF43AF /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA83161BFAC5B300AF43AF /* Properties.swift */; };
 		EE1A3BEC1BF2F1070092DE1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1A3BEB1BF2F1070092DE1C /* AppDelegate.swift */; };
 		EE1A3BEE1BF2F1070092DE1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1A3BED1BF2F1070092DE1C /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5DA3E3F01BFE2A74009B167D /* MoviesPicked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesPicked.swift; sourceTree = "<group>"; };
 		5DDA83161BFAC5B300AF43AF /* Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
 		EE1A3BE81BF2F1070092DE1C /* Moodie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moodie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE1A3BEB1BF2F1070092DE1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				EE237F581BF3A6DA00D71167 /* background.gif */,
 				EE1A3BEB1BF2F1070092DE1C /* AppDelegate.swift */,
 				EE1A3BED1BF2F1070092DE1C /* ViewController.swift */,
+				5DA3E3F01BFE2A74009B167D /* MoviesPicked.swift */,
 				EEE47FCA1BF6C5F20012D304 /* Keywords.swift */,
 				5DDA83161BFAC5B300AF43AF /* Properties.swift */,
 				EE1A3BEF1BF2F1070092DE1C /* Main.storyboard */,
@@ -152,6 +155,7 @@
 			files = (
 				5DDA83171BFAC5B300AF43AF /* Properties.swift in Sources */,
 				EEE47FCB1BF6C5F20012D304 /* Keywords.swift in Sources */,
+				5DA3E3F11BFE2A74009B167D /* MoviesPicked.swift in Sources */,
 				EE1A3BEE1BF2F1070092DE1C /* ViewController.swift in Sources */,
 				EE1A3BEC1BF2F1070092DE1C /* AppDelegate.swift in Sources */,
 			);
