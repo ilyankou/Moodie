@@ -10,14 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let KEYWORDS_NUMBER = 35;
-    let PROPERTIES_NUMBER = 11;
+    var KEYWORDS_NUMBER = 0;
+    var PROPERTIES_NUMBER = 0;
     
-    var moodButtons : [(UIButton, String, String, Int)] = []
+    var moodButtons: [(UIButton, String, String, Int)] = []
     var keywords = Keywords()
     var currentView = 1
+    var currentMood = 0
     var allowedToSwipe = 0
     let screenWidth = UIScreen.mainScreen().bounds.size.width
+    let screenHeight = UIScreen.mainScreen().bounds.size.height
     
     @IBOutlet weak var webViewBackground: UIWebView!
     
@@ -37,7 +39,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var coolButton: UIButton!
     @IBOutlet weak var sleepyButton: UIButton!
     
+    var keywordsForButton = [
+        [11, 20, 21, 24, 38, 45],   //  happy
+        [0, 12, 22, 57],   //  sad
+        [],   //  angry
+        [2, 13, 16, 20, 26, 27, 35, 38, 54, 65, 79],   //  inlove
+        [3],   //  cool
+        [1]    //  sleepy
+    ]
+    
     @IBOutlet weak var pickMovieButton: UIButton!
+    
     
     @IBAction func nextView(sender: AnyObject) {
         if allowedToSwipe == 0 {
@@ -54,6 +66,7 @@ class ViewController: UIViewController {
         }
     }
     
+    
     @IBAction func prevView(sender: AnyObject) {
         if currentView == 2 || currentView == 3 {
             UIView.animateWithDuration(0.5, animations: {
@@ -66,11 +79,14 @@ class ViewController: UIViewController {
     
     
     @IBAction func moodButtonClicked(sender: AnyObject) {
-        allowedToSwipe = 1
         let clicked = sender as! UIButton
-        let clickedTag = clicked.tag
+        currentMood = clicked.tag
         
-        if (moodButtons[clickedTag].3 == 0) {
+        if (allowedToSwipe == 0) {
+            allowedToSwipe = 1;
+        }
+        
+        if (moodButtons[currentMood].3 == 0) {
             for i in 0...5 {
                 if (moodButtons[i].3 == 1) {
                     moodButtons[i].3 = 0
@@ -79,50 +95,72 @@ class ViewController: UIViewController {
                 }
             }
             
-            clicked.setImage(UIImage(named: moodButtons[clickedTag].2), forState: UIControlState())
-            moodButtons[clickedTag].3 = 1
+            clicked.setImage(UIImage(named: moodButtons[currentMood].2), forState: UIControlState())
+            moodButtons[currentMood].3 = 1
+            setSuggestedKeywords()
         }
     }
     
+    
     func keywordSelected(sender: UIButton) {
         if keywords.changeStatus(sender.tag) == 0 {
-            //sender.backgroundColor = nil
             sender.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
             sender.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         }
         else {
-            //sender.backgroundColor = UIColor.whiteColor()
             sender.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
             sender.setTitleColor(UIColor(red: 40/255, green: 40/255, blue: 40/255, alpha: 1), forState: UIControlState.Normal)
         }
     }
     
+    // Reset keywords to suggested when phone is shaken
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
         if motion == .MotionShake {
-            if (currentView == 2) {
-                for i in 0...(KEYWORDS_NUMBER-1) {
-                    keywords.entries[i].2 = 1
-                }
-                
-                for button in keywordsSet.subviews {
-                    if button as? UIButton != nil {
-                        keywordSelected(button as! UIButton)
+            setSuggestedKeywords()
+        }
+    }
+    
+    // Deselect all keywords
+    func clearAllKeywords()  {
+        for i in 0...(keywords.entries.count-1) {
+            keywords.entries[i].2 = 1
+        }
+        
+        for button in propertiesSet.subviews {
+            if button as? UIButton != nil {
+                keywordSelected(button as! UIButton)
+            }
+        }
+        
+        for button in keywordsSet.subviews {
+            if button as? UIButton != nil {
+                keywordSelected(button as! UIButton)
+            }
+        }
+    }
+    
+    // Reset keywords on both pages to suggested
+    func setSuggestedKeywords() {
+        clearAllKeywords()
+        let suggestedKeywords = keywordsForButton[currentMood]
+        for i in 0...(suggestedKeywords.count-1) {
+            for view in keywordsSet.subviews as [UIView] {
+                if let btn = view as? UIButton {
+                    if btn.tag == suggestedKeywords[i] {
+                        keywordSelected(btn)
+                        break
                     }
                 }
             }
             
-            if (currentView == 3) {
-                for i in KEYWORDS_NUMBER...(keywords.entries.count-1) {
-                    keywords.entries[i].2 = 1
-                }
-                
-                for button in propertiesSet.subviews {
-                    if button as? UIButton != nil {
-                        keywordSelected(button as! UIButton)
+            for view in propertiesSet.subviews as [UIView] {
+                if let btn = view as? UIButton {
+                    if btn.tag == suggestedKeywords[i] {
+                        keywordSelected(btn)
+                        break
                     }
                 }
             }
-            
         }
     }
     
@@ -155,12 +193,19 @@ class ViewController: UIViewController {
             
             if x + w > self.screenWidth - 20 {
                 x = 0
-                y += h + 10
+                y += h + (self.screenHeight / 40)
             }
             
-            if (i == KEYWORDS_NUMBER) {
-                y = 0;
-                x = 0;
+            // Re-set x and y for the second page
+            if KEYWORDS_NUMBER == 0 && y > self.screenHeight - 20 - h {
+                KEYWORDS_NUMBER = i
+                y = 0
+                x = 0
+            }
+            
+            // Finish generating keyword buttons when "Pick a movie" button reached
+            if KEYWORDS_NUMBER > 0 && y > self.screenHeight - (1/4)*self.screenHeight - h {
+                break
             }
                 
             button.frame = CGRectMake(x, y, w, h)
@@ -169,19 +214,15 @@ class ViewController: UIViewController {
             button.tag = i
             button.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
             
-            /*
-            button.layer.borderColor = UIColor.whiteColor().CGColor
-            button.layer.borderWidth = 2 */
-            
-            if (i < KEYWORDS_NUMBER) {
+            if (KEYWORDS_NUMBER == 0) {
                 self.keywordsSet.addSubview(button)
             }
             else {
-                self.propertiesSet.addSubview(button);
+                self.propertiesSet.addSubview(button)
             }
             
             i++
-            x += w + 10
+            x += w + (self.screenWidth / 40)
 
         }
         pickMovieButton.layer.borderColor = UIColor.whiteColor().CGColor
