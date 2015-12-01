@@ -15,6 +15,11 @@
 		EE1A3BF61BF2F1080092DE1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE1A3BF41BF2F1080092DE1C /* LaunchScreen.storyboard */; };
 		EE237F591BF3A6DA00D71167 /* background.gif in Resources */ = {isa = PBXBuildFile; fileRef = EE237F581BF3A6DA00D71167 /* background.gif */; };
 		EE237F5B1BF3CA7E00D71167 /* background.html in Resources */ = {isa = PBXBuildFile; fileRef = EE237F5A1BF3CA7E00D71167 /* background.html */; };
+		EE9E3E7D1C0C91AD00C7E56F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9E3E7C1C0C91AD00C7E56F /* libsqlite3.dylib */; };
+		EE9E3E7F1C0C91BF00C7E56F /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9E3E7E1C0C91BF00C7E56F /* libz.1.dylib */; };
+		EE9E3E831C0C928900C7E56F /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9E3E801C0C928900C7E56F /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EE9E3E841C0C928900C7E56F /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9E3E811C0C928900C7E56F /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EE9E3E851C0C928900C7E56F /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9E3E821C0C928900C7E56F /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EEE47FCB1BF6C5F20012D304 /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE47FCA1BF6C5F20012D304 /* Keywords.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +34,12 @@
 		EE1A3BF71BF2F1080092DE1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE237F581BF3A6DA00D71167 /* background.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = background.gif; sourceTree = "<group>"; };
 		EE237F5A1BF3CA7E00D71167 /* background.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = background.html; sourceTree = "<group>"; };
+		EE9E3E7C1C0C91AD00C7E56F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
+		EE9E3E7E1C0C91BF00C7E56F /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
+		EE9E3E801C0C928900C7E56F /* FMDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = Moodie/FMDatabase.m; sourceTree = "<group>"; };
+		EE9E3E811C0C928900C7E56F /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = Moodie/FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		EE9E3E821C0C928900C7E56F /* FMResultSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = Moodie/FMResultSet.m; sourceTree = "<group>"; };
+		EE9E3E861C0C931C00C7E56F /* Moodie-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Moodie-Bridging-Header.h"; sourceTree = "<group>"; };
 		EEE47FCA1BF6C5F20012D304 /* Keywords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keywords.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -37,6 +48,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE9E3E7F1C0C91BF00C7E56F /* libz.1.dylib in Frameworks */,
+				EE9E3E7D1C0C91AD00C7E56F /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +59,12 @@
 		EE1A3BDF1BF2F1070092DE1C = {
 			isa = PBXGroup;
 			children = (
+				EE9E3E861C0C931C00C7E56F /* Moodie-Bridging-Header.h */,
+				EE9E3E801C0C928900C7E56F /* FMDatabase.m */,
+				EE9E3E811C0C928900C7E56F /* FMDatabaseAdditions.m */,
+				EE9E3E821C0C928900C7E56F /* FMResultSet.m */,
+				EE9E3E7E1C0C91BF00C7E56F /* libz.1.dylib */,
+				EE9E3E7C1C0C91AD00C7E56F /* libsqlite3.dylib */,
 				EE1A3BEA1BF2F1070092DE1C /* Moodie */,
 				EE1A3BE91BF2F1070092DE1C /* Products */,
 			);
@@ -150,6 +169,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE9E3E831C0C928900C7E56F /* FMDatabase.m in Sources */,
+				EE9E3E841C0C928900C7E56F /* FMDatabaseAdditions.m in Sources */,
+				EE9E3E851C0C928900C7E56F /* FMResultSet.m in Sources */,
 				5DDA83171BFAC5B300AF43AF /* Properties.swift in Sources */,
 				EEE47FCB1BF6C5F20012D304 /* Keywords.swift in Sources */,
 				EE1A3BEE1BF2F1070092DE1C /* ViewController.swift in Sources */,
@@ -273,6 +295,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.trincoll.moodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Moodie-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -287,6 +310,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.trincoll.moodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Moodie-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     var keywordsForButton = [
         [11, 20, 21, 24, 38, 45],   //  happy
         [0, 12, 22, 57],   //  sad
-        [],   //  angry
+        [0,1,2],   //  angry
         [2, 13, 16, 20, 26, 27, 35, 38, 54, 65, 79],   //  inlove
         [3],   //  cool
         [1]    //  sleepy
