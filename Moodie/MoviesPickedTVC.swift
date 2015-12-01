@@ -22,12 +22,15 @@ class MoviesPickedTVC: UITableViewController {
     
     //var movieCell = MovieCell()
     
-    let testTable = [("Harry Potter and the Philosopher's Stone", "The first Harry Potter Movie", "Philostone.jpg"), ("Harry Potter and the Chamber of Secrets", "The second Harry Potter Movie", "Philostone.jpg"), ("Harry Potter and the Prizoner of Azkaban", "The third Harry Potter Movie", "Philostone.jpg")]
+    let testTable = [("Harry Potter and the Philosopher's Stone", "Rescued from the outrageous neglect of his aunt and uncle, a young boy with a great destiny proves his worth while attending Hogwarts School of Witchcraft and Wizardry.", "Philostone.jpg"), ("Harry Potter and the Chamber of Secrets", "Harry ignores warnings not to return to Hogwarts, only to find the school plagued by a series of mysterious attacks and a strange voice haunting him.", "Philostone.jpg"), ("Harry Potter and the Prizoner of Azkaban", "It's Harry's third year at Hogwarts; not only does he have a new Defense Against the Dark Arts teacher, but there is also trouble brewing. Convicted murderer Sirius Black has escaped the Wizards' Prison and is coming after Harry.", "Philostone.jpg")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.estimatedRowHeight = 180
+        
+        
+        
         //tableView.rowHeight = UITableViewAutomaticDimension
 
         // Uncomment the following line to preserve selection between presentations
@@ -64,10 +67,19 @@ class MoviesPickedTVC: UITableViewController {
         // Configure the cell...
         
         let (title, description, poster) = testTable[indexPath.row]
+        
+        
+        
+        
+        var imageView = UIImageView(frame: CGRectMake(0, 0, cell.frame.width, cell.frame.height))
+        let image = UIImage(named: "maxresdefault.jpg")
+        imageView.image = image
+        cell.backgroundView = UIView()
+        cell.backgroundView!.addSubview(imageView)
         /*if cell.textLabel?.tag == 1 {
             cell.textLabel?.text = title
         }
-        else if cell.textLabel?.tag == 2 {
+        else {
             cell.textLabel?.text = description
         }*/
         //filmTitle.text = title
@@ -89,23 +101,31 @@ class MoviesPickedTVC: UITableViewController {
         /*var myImage = UIImage(named: poster)
         cell.imageView?.image = myImage*/
         
-        var tt : UILabel = UILabel(frame: CGRectMake(100, 0, 300, 100))
+        var tt : UILabel = UILabel(frame: CGRectMake(18, 0, 350, 100))
         tt.text = title
+        tt.textAlignment = NSTextAlignment.Center
+        tt.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
+        tt.numberOfLines = 0
         cell.addSubview(tt)
         
-        var ss : UILabel = UILabel(frame: CGRectMake(200, 110, 100, 300))
+        var ss : UILabel = UILabel(frame: CGRectMake(38, 298, 300, 200))
         ss.text = description
+        ss.font = UIFont(name: ss.font.fontName, size: 13)
+        ss.textAlignment = NSTextAlignment.Center
+        ss.numberOfLines = 0
         cell.addSubview(ss)
         
-        var cellImg : UIImageView = UIImageView(frame: CGRectMake(20, 50, 230, 350))
+        var cellImg : UIImageView = UIImageView(frame: CGRectMake(95, 80, 180, 260))
         cellImg.image = UIImage(named: poster)
+        cellImg.layer.cornerRadius = 8.0
+        cell.imageView!.clipsToBounds = true
         cell.addSubview(cellImg)
         
-        var frame = cell.imageView!.frame
+        /*var frame = cell.imageView!.frame
         let imageSize = 20 as CGFloat
         cell.imageView!.frame = frame
         cell.imageView!.layer.cornerRadius = imageSize / 2.0
-        cell.imageView!.clipsToBounds = true
+        cell.imageView!.clipsToBounds = true*/
         
         
         
@@ -116,16 +136,16 @@ class MoviesPickedTVC: UITableViewController {
         cellImg.image = UIImage(named: poster)
         cell.addSubview(cellImg)*/
         
-        /*var itemSize:CGSize = CGSizeMake(20, 20)
-        UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.mainScreen().scale)
-        var imageRect : CGRect = CGRectMake(0, 0, itemSize.width, itemSize.height)*/
-        //var frame = cell.imageView!.frame
-        //let imageSize = 20 as CGFloat
-        //frame.size.height = imageSize
-        //frame.size.width  = imageSize
-        //cell.imageView!.frame = frame
-        //cell.imageView!.layer.cornerRadius = imageSize / 2.0
-        //cell.imageView!.clipsToBounds = true
+        //var itemSize:CGSize = CGSizeMake(20, 20)
+        //UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.mainScreen().scale)
+        //var imageRect : CGRect = CGRectMake(0, 0, itemSize.width, itemSize.height)
+        /*var frame = cell.imageView!.frame
+        let imageSize = 20 as CGFloat
+        frame.size.height = imageSize
+        frame.size.width  = imageSize
+        cell.imageView!.frame = frame
+        cell.imageView!.layer.cornerRadius = imageSize / 2.0
+        cell.imageView!.clipsToBounds = true*/
         //cell.imageView?.frame = CGRectMake(5,5,32,32);
 
         return cell
