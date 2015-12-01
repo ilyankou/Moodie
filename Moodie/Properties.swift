@@ -17,7 +17,6 @@ class Properties: NSObject {
         ("foreign", 1, 0, 3),
         ("silent", 1, 0, 1),
         ("black and white", 1, 0, 1),
-        ("before 1900", 1, 0, 2),
         ("1900-1960s", 1, 0, 2),
         ("1970-2000s", 1, 0, 2),
         ("2000-2010s", 1, 0, 2),

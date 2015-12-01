@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5DA3E3F51BFE3362009B167D /* MoviesPickedTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3E3F41BFE3362009B167D /* MoviesPickedTVC.swift */; };
-		5DA3E3F71C0BCBC7009B167D /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3E3F61C0BCBC7009B167D /* MovieCell.swift */; };
 		5DA3E3FA1C0D53A3009B167D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DA3E3F81C0D53A3009B167D /* libsqlite3.dylib */; };
 		5DDA83171BFAC5B300AF43AF /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA83161BFAC5B300AF43AF /* Properties.swift */; };
 		EE1A3BEC1BF2F1070092DE1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1A3BEB1BF2F1070092DE1C /* AppDelegate.swift */; };
@@ -23,7 +22,6 @@
 
 /* Begin PBXFileReference section */
 		5DA3E3F41BFE3362009B167D /* MoviesPickedTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesPickedTVC.swift; sourceTree = "<group>"; };
-		5DA3E3F61C0BCBC7009B167D /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		5DA3E3F81C0D53A3009B167D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 		5DA3E3F91C0D53A3009B167D /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		5DDA83161BFAC5B300AF43AF /* Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 				EE1A3BF41BF2F1080092DE1C /* LaunchScreen.storyboard */,
 				EE1A3BF71BF2F1080092DE1C /* Info.plist */,
 				5DA3E3F41BFE3362009B167D /* MoviesPickedTVC.swift */,
-				5DA3E3F61C0BCBC7009B167D /* MovieCell.swift */,
 			);
 			path = Moodie;
 			sourceTree = "<group>";
@@ -164,7 +161,6 @@
 			files = (
 				5DDA83171BFAC5B300AF43AF /* Properties.swift in Sources */,
 				EEE47FCB1BF6C5F20012D304 /* Keywords.swift in Sources */,
-				5DA3E3F71C0BCBC7009B167D /* MovieCell.swift in Sources */,
 				EE1A3BEE1BF2F1070092DE1C /* ViewController.swift in Sources */,
 				5DA3E3F51BFE3362009B167D /* MoviesPickedTVC.swift in Sources */,
 				EE1A3BEC1BF2F1070092DE1C /* AppDelegate.swift in Sources */,

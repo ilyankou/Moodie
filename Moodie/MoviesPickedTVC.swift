@@ -71,11 +71,11 @@ class MoviesPickedTVC: UITableViewController {
         
         
         
-        var imageView = UIImageView(frame: CGRectMake(0, 0, cell.frame.width, cell.frame.height))
-        let image = UIImage(named: "maxresdefault.jpg")
-        imageView.image = image
-        cell.backgroundView = UIView()
-        cell.backgroundView!.addSubview(imageView)
+        //var imageView = UIImageView(frame: CGRectMake(0, 0, cell.frame.width, cell.frame.height))
+        //let image = UIImage(named: "maxresdefault.jpg")
+        //imageView.image = image
+        //cell.backgroundView = UIView()
+        //cell.backgroundView!.addSubview(imageView)
         /*if cell.textLabel?.tag == 1 {
             cell.textLabel?.text = title
         }
