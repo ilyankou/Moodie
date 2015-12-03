@@ -266,30 +266,15 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="504" id="YhC-aZ-I9b">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="tEG-hs-LsO">
                                 <rect key="frame" x="0.0" y="28" width="600" height="504"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YhC-aZ-I9b" id="Myy-s8-po8">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tEG-hs-LsO" id="5fo-OR-eJh">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="503"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Spl-Y2-SN0">
-                                            <rect key="frame" x="20" y="105" width="260" height="350"/>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" priority="999" constant="350" id="ET6-lM-PTd"/>
-                                                <constraint firstAttribute="width" priority="999" constant="260" id="erX-hN-Fsd"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
                                     <animations/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Spl-Y2-SN0" secondAttribute="bottom" priority="999" constant="20" id="XN6-EL-jqs"/>
-                                        <constraint firstItem="Spl-Y2-SN0" firstAttribute="leading" secondItem="Myy-s8-po8" secondAttribute="leading" constant="20" id="YWx-cD-fgH"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
-                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>

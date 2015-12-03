@@ -10,34 +10,82 @@ import UIKit
 
 class MoviesPickedTVC: UITableViewController {
     
-    //@IBOutlet weak var filmTitle: UILabel!
-    
-    //@IBOutlet weak var filmTitle: UILabel!
-    
-    //@IBOutlet weak var filmDescription: UILabel!
-    
-    
-    //@IBOutlet var titleLabel: UILabel!
-    //@IBOutlet var subtitleLabel: UILabel!
-    
-    //var movieCell = MovieCell()
-    
-    let testTable = [("Harry Potter and the Philosopher's Stone", "Rescued from the outrageous neglect of his aunt and uncle, a young boy with a great destiny proves his worth while attending Hogwarts School of Witchcraft and Wizardry.", "Philostone.jpg"), ("Harry Potter and the Chamber of Secrets", "Harry ignores warnings not to return to Hogwarts, only to find the school plagued by a series of mysterious attacks and a strange voice haunting him.", "Philostone.jpg"), ("Harry Potter and the Prizoner of Azkaban", "It's Harry's third year at Hogwarts; not only does he have a new Defense Against the Dark Arts teacher, but there is also trouble brewing. Convicted murderer Sirius Black has escaped the Wizards' Prison and is coming after Harry.", "Philostone.jpg")]
+    var keywords: Keywords?
+    var mood = 0
+    var moodieRanking : [Double] = [0.0]
+    var moodieFinal : [[String: String]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.estimatedRowHeight = 180
-        
-        
-        
-        //tableView.rowHeight = UITableViewAutomaticDimension
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        let path = NSBundle.mainBundle().pathForResource("movies", ofType:"db")
+        let database = FMDatabase(path: path)
+        
+        if !database.open() {
+            print("Unable to open database")
+            return
+        }
+        
+        var sql = "SELECT * FROM MOVIES;"
+        var rs = database.executeQuery(sql, withArgumentsInArray: nil)
+        
+        while rs.next() {
+            
+            let id = Int(rs.intForColumn("ID"))
+            let dbKeywords = String(rs.stringForColumn("KEYWORDS"))
+            let dbRating = Double(rs.doubleForColumn("RATING"))
+            
+            moodieRanking.append(100.0)
+            
+            
+            for kword in keywords!.entries {
+                if kword.2 == 0 {continue}
+                
+                let selectedKeyword = kword.0.stringByReplacingOccurrencesOfString(" ", withString:"-")
+                
+                if dbKeywords.rangeOfString(selectedKeyword) != nil {
+                    moodieRanking[id] += 100.0
+                    
+                }
+            }
+            
+            moodieRanking[id] *= dbRating
+            
+        }
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+
+        
+        
+        for _ in 0...9 {
+            var max = 0.0
+            var maxIndex = 0
+            
+            for j in 1...(moodieRanking.count-1) {
+                if moodieRanking[j] > max {
+                    max = moodieRanking[j]
+                    maxIndex = j
+                }
+            }
+            
+            sql = "SELECT * FROM MOVIES WHERE ID = \(maxIndex);"
+            rs = database.executeQuery(sql, withArgumentsInArray: nil)
+            
+            rs.next()
+            let myTitle = String(rs.stringForColumn("TITLE"))
+            let myYear = String(rs.intForColumn("YEAR"))
+            
+            moodieFinal.append(["title": myTitle, "year": myYear])
+            
+            moodieRanking[maxIndex] = 0.0
+            
+        }
+        
+        for k in moodieFinal {
+            print("\(k) \n")
+        }
+
+        
+        database.close()
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,105 +96,55 @@ class MoviesPickedTVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return testTable.count
+        return moodieFinal.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        //let cell = movieCell
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
 
-        // Configure the cell...
         
-        let (title, description, poster) = testTable[indexPath.row]
-        
-        
-        
-        
-        //var imageView = UIImageView(frame: CGRectMake(0, 0, cell.frame.width, cell.frame.height))
-        //let image = UIImage(named: "maxresdefault.jpg")
-        //imageView.image = image
-        //cell.backgroundView = UIView()
-        //cell.backgroundView!.addSubview(imageView)
-        /*if cell.textLabel?.tag == 1 {
-            cell.textLabel?.text = title
+        // Not adding new subviews if cell was created before
+        for sbvw in cell.subviews {
+            if (sbvw.tag == 99) {
+                return cell
+            }
         }
-        else {
-            cell.textLabel?.text = description
-        }*/
-        //filmTitle.text = title
-        //filmDescription.text = description
-        //cell.textLabel?.text = title
-        //cell.textLabel?.text = description
         
-        //retrieve an image
+        print("====== \(indexPath.row) ========== \n")
         
-        /*cell.textLabel?.text = title
-        cell.detailTextLabel?.text = description*/
+        let movieTitle = moodieFinal[indexPath.row]["title"]
+        //let movieYear = moodieFinal[indexPath.row]["year"]
         
-        //cell.titleLabel.text = title
-        //cell.subtitleLabel.text = description
+        let title = UILabel(frame: CGRectMake(18, 0, 350, 100))
+        title.text = movieTitle
+        title.tag = 99
+        title.textAlignment = NSTextAlignment.Center
+        title.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
+        title.numberOfLines = 0
+        cell.addSubview(title)
         
-        //cell.setTitle(title)
-        //cell.setSubtitle(description)
-        
-        /*var myImage = UIImage(named: poster)
-        cell.imageView?.image = myImage*/
-        
-        var tt : UILabel = UILabel(frame: CGRectMake(18, 0, 350, 100))
-        tt.text = title
-        tt.textAlignment = NSTextAlignment.Center
-        tt.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
-        tt.numberOfLines = 0
-        cell.addSubview(tt)
-        
+        /*
         var ss : UILabel = UILabel(frame: CGRectMake(38, 298, 300, 200))
         ss.text = description
         ss.font = UIFont(name: ss.font.fontName, size: 13)
         ss.textAlignment = NSTextAlignment.Center
         ss.numberOfLines = 0
         cell.addSubview(ss)
+        */
         
+        /*
         var cellImg : UIImageView = UIImageView(frame: CGRectMake(95, 80, 180, 260))
         cellImg.image = UIImage(named: poster)
         cellImg.layer.cornerRadius = 8.0
         cell.imageView!.clipsToBounds = true
-        cell.addSubview(cellImg)
+        cell.addSubview(cellImg) */
         
-        /*var frame = cell.imageView!.frame
-        let imageSize = 20 as CGFloat
-        cell.imageView!.frame = frame
-        cell.imageView!.layer.cornerRadius = imageSize / 2.0
-        cell.imageView!.clipsToBounds = true*/
-        
-        
-        
-        
-        
-        
-        /*var cellImg : UIImageView = UIImageView(frame: CGRectMake(5, 5, 50, 50))
-        cellImg.image = UIImage(named: poster)
-        cell.addSubview(cellImg)*/
-        
-        //var itemSize:CGSize = CGSizeMake(20, 20)
-        //UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.mainScreen().scale)
-        //var imageRect : CGRect = CGRectMake(0, 0, itemSize.width, itemSize.height)
-        /*var frame = cell.imageView!.frame
-        let imageSize = 20 as CGFloat
-        frame.size.height = imageSize
-        frame.size.width  = imageSize
-        cell.imageView!.frame = frame
-        cell.imageView!.layer.cornerRadius = imageSize / 2.0
-        cell.imageView!.clipsToBounds = true*/
-        //cell.imageView?.frame = CGRectMake(5,5,32,32);
 
         return cell
     }

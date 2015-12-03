@@ -234,5 +234,11 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let secondScene = segue.destinationViewController as! MoviesPickedTVC
+        secondScene.keywords = self.keywords
+        secondScene.mood = self.currentMood
+    }
 
 }
