@@ -14,7 +14,7 @@ class MoviesPickedTVC: UITableViewController {
     var mood = 0
     var moodieRanking : [Double] = [0.0]
     var moodieFinal : [[String: String]] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -114,20 +114,22 @@ class MoviesPickedTVC: UITableViewController {
         return cell
     }
     
+    @IBAction func goBack(sender: AnyObject) {
+        print("HIT HIT HIT HIT HIT")
+    }
     
     /*override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->CGFloat {
         return tableView.frame.size.height;
     }*/
-
     
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        return false
     }
-    */
+    
 
     /*
     // Override to support editing the table view.

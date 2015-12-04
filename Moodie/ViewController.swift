@@ -28,7 +28,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var keywordsSet: UIView!
     @IBOutlet weak var propertiesSet: UIView!
     
-    
     @IBOutlet weak var viewsContainer: UIView!
     @IBOutlet weak var viewsContainerLeading: NSLayoutConstraint!
     
@@ -239,6 +238,13 @@ class ViewController: UIViewController {
         let secondScene = segue.destinationViewController as! MoviesPickedTVC
         secondScene.keywords = self.keywords
         secondScene.mood = self.currentMood
+        
+        /*
+        // Generating a string of all keywords on the screen
+        for k in self.keywords.entries {
+            print(k.0.stringByReplacingOccurrencesOfString(" ", withString: "-"), terminator:"")
+        }
+        */
     }
 
 }

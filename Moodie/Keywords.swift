@@ -118,6 +118,7 @@ class Keywords: NSObject {
         if (self.entries[tag].2 == 0) {
             self.entries[tag].2 = 1
             return 1
+
         }
         else {
             self.entries[tag].2 = 0
