@@ -55,7 +55,7 @@ class MoviesPickedTVC: UITableViewController {
 
 
         
-        
+        // Getting the list of 10 highest Moodie-rated movies
         for _ in 0...9 {
             var max = 0.0
             var maxIndex = 0
@@ -79,10 +79,6 @@ class MoviesPickedTVC: UITableViewController {
             moodieRanking[maxIndex] = 0.0
             
         }
-        
-        for k in moodieFinal {
-            print("\(k) \n")
-        }
 
         
         database.close()
@@ -90,10 +86,7 @@ class MoviesPickedTVC: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -103,51 +96,24 @@ class MoviesPickedTVC: UITableViewController {
         return moodieFinal.count
     }
 
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
-
         
-        // Not adding new subviews if cell was created before
-        for sbvw in cell.subviews {
-            if (sbvw.tag == 99) {
-                return cell
-            }
-        }
         
-        print("====== \(indexPath.row) ========== \n")
+        let movieTitleLabel = self.view.viewWithTag(69) as! UILabel
         
-        let movieTitle = moodieFinal[indexPath.row]["title"]
-        //let movieYear = moodieFinal[indexPath.row]["year"]
         
-        let title = UILabel(frame: CGRectMake(18, 0, 350, 100))
-        title.text = movieTitle
-        title.tag = 99
-        title.textAlignment = NSTextAlignment.Center
-        title.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
-        title.numberOfLines = 0
-        cell.addSubview(title)
+        let movieTitle = moodieFinal[indexPath.row]["title"]!
+        let movieYear = moodieFinal[indexPath.row]["year"]!
         
-        /*
-        var ss : UILabel = UILabel(frame: CGRectMake(38, 298, 300, 200))
-        ss.text = description
-        ss.font = UIFont(name: ss.font.fontName, size: 13)
-        ss.textAlignment = NSTextAlignment.Center
-        ss.numberOfLines = 0
-        cell.addSubview(ss)
-        */
         
-        /*
-        var cellImg : UIImageView = UIImageView(frame: CGRectMake(95, 80, 180, 260))
-        cellImg.image = UIImage(named: poster)
-        cellImg.layer.cornerRadius = 8.0
-        cell.imageView!.clipsToBounds = true
-        cell.addSubview(cellImg) */
+        movieTitleLabel.text = "\(movieTitle) (\(movieYear))"
         
-
         return cell
     }
+    
     
     /*override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->CGFloat {
         return tableView.frame.size.height;
