@@ -24,6 +24,7 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                                 <gestureRecognizers/>
+                                <dataDetectorType key="dataDetectorTypes"/>
                             </webView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oIp-4y-aAw" userLabel="ViewsContainer">
                                 <rect key="frame" x="0.0" y="0.0" width="1800" height="600"/>
@@ -174,7 +175,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="8HS-fg-bgb" kind="show" id="6a7-XB-37H"/>
+                                                    <segue destination="lnU-ff-lyq" kind="showDetail" id="wq4-Hh-TOQ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -255,63 +256,97 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="306" y="333"/>
+            <point key="canvasLocation" x="334" y="333"/>
         </scene>
-        <!--Movies PickedTVC-->
-        <scene sceneID="BBq-xA-VDM">
+        <!--SecondViewController-->
+        <scene sceneID="urY-FW-AEz">
             <objects>
-                <tableViewController id="8HS-fg-bgb" customClass="MoviesPickedTVC" customModule="Moodie" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" id="7WF-k2-kyO">
+                <viewController title="SecondViewController" id="lnU-ff-lyq" customClass="SecondViewController" customModule="Moodie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rj4-It-eDh"/>
+                        <viewControllerLayoutGuide type="bottom" id="TY3-9n-ukA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WtO-cS-Nan">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="40" id="tEG-hs-LsO">
-                                <rect key="frame" x="0.0" y="28" width="600" height="40"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tEG-hs-LsO" id="5fo-OR-eJh">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="39"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="69" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f21-aI-l8D" userLabel="movieTitle">
-                                            <rect key="frame" x="270" y="46" width="42" height="21"/>
-                                            <animations/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <animations/>
-                                    <constraints>
-                                        <constraint firstItem="f21-aI-l8D" firstAttribute="width" secondItem="5fo-OR-eJh" secondAttribute="width" id="3qq-fo-bdj"/>
-                                        <constraint firstItem="f21-aI-l8D" firstAttribute="top" secondItem="5fo-OR-eJh" secondAttribute="topMargin" constant="10" id="8wH-6H-Q0m"/>
-                                        <constraint firstItem="f21-aI-l8D" firstAttribute="leading" secondItem="5fo-OR-eJh" secondAttribute="leadingMargin" id="L9p-Eq-f6x"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="f21-aI-l8D" secondAttribute="trailing" id="yYY-Jc-UEz"/>
-                                    </constraints>
-                                </tableViewCellContentView>
+                        <subviews>
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="goY-wG-Vwf">
+                                <rect key="frame" x="180" y="236" width="240" height="128"/>
                                 <animations/>
-                                <gestureRecognizers/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                            </webView>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7WF-k2-kyO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="100" id="tEG-hs-LsO">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tEG-hs-LsO" id="5fo-OR-eJh">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label userInteractionEnabled="NO" alpha="0.80000000000000004" tag="69" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f21-aI-l8D" userLabel="movieTitle">
+                                                    <rect key="frame" x="270" y="46" width="42" height="21"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="0.98140391026409679" green="0.9981682268054527" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="0.14828529869176355" blue="0.30392683513512486" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="f21-aI-l8D" firstAttribute="width" secondItem="5fo-OR-eJh" secondAttribute="width" constant="-30" id="3qq-fo-bdj"/>
+                                                <constraint firstItem="f21-aI-l8D" firstAttribute="top" secondItem="5fo-OR-eJh" secondAttribute="topMargin" id="8wH-6H-Q0m"/>
+                                                <constraint firstItem="f21-aI-l8D" firstAttribute="leading" secondItem="5fo-OR-eJh" secondAttribute="leading" constant="15" id="L9p-Eq-f6x"/>
+                                                <constraint firstAttribute="trailing" secondItem="f21-aI-l8D" secondAttribute="trailing" constant="15" id="yYY-Jc-UEz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="1DT-Dt-4Rn" appends="YES" id="V7Q-y8-5S1"/>
+                                    <outlet property="dataSource" destination="lnU-ff-lyq" id="obp-BF-L0U"/>
+                                    <outlet property="delegate" destination="lnU-ff-lyq" id="199-sk-KII"/>
                                 </connections>
-                            </tableViewCell>
-                        </prototypes>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="7WF-k2-kyO" firstAttribute="leading" secondItem="WtO-cS-Nan" secondAttribute="leading" id="Ixh-9t-aDN"/>
+                            <constraint firstAttribute="trailing" secondItem="7WF-k2-kyO" secondAttribute="trailing" id="KXD-Sc-BJ7"/>
+                            <constraint firstItem="7WF-k2-kyO" firstAttribute="width" secondItem="WtO-cS-Nan" secondAttribute="width" id="cwy-Kz-Dix"/>
+                            <constraint firstItem="goY-wG-Vwf" firstAttribute="height" secondItem="WtO-cS-Nan" secondAttribute="height" id="dt1-79-Yp4"/>
+                            <constraint firstItem="goY-wG-Vwf" firstAttribute="width" secondItem="WtO-cS-Nan" secondAttribute="width" id="gru-dV-otC"/>
+                            <constraint firstItem="goY-wG-Vwf" firstAttribute="leading" secondItem="WtO-cS-Nan" secondAttribute="leading" id="ixW-iY-joj"/>
+                            <constraint firstItem="7WF-k2-kyO" firstAttribute="height" secondItem="WtO-cS-Nan" secondAttribute="height" id="lw4-W2-96W"/>
+                            <constraint firstItem="goY-wG-Vwf" firstAttribute="top" secondItem="rj4-It-eDh" secondAttribute="bottom" id="zQQ-zo-uli"/>
+                        </constraints>
                         <connections>
-                            <outlet property="dataSource" destination="8HS-fg-bgb" id="G1r-7Z-sc1"/>
-                            <outlet property="delegate" destination="8HS-fg-bgb" id="MKe-0K-HVA"/>
+                            <outletCollection property="gestureRecognizers" destination="qMS-mU-dvc" appends="YES" id="RhE-se-cZa"/>
                         </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="laN-aG-ErY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="1DT-Dt-4Rn" userLabel="goBack">
+                    </view>
                     <connections>
-                        <action selector="goBack:" destination="8HS-fg-bgb" id="weM-FL-k5M"/>
-                        <segue destination="BYZ-38-t0r" kind="show" id="4sY-fs-fzG"/>
+                        <outlet property="tvBg" destination="goY-wG-Vwf" id="Nka-sf-d7I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BR4-uf-NMd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="qMS-mU-dvc" userLabel="goBack">
+                    <connections>
+                        <outlet property="delegate" destination="7WF-k2-kyO" id="fXI-Hm-Eqj"/>
+                        <segue destination="BYZ-38-t0r" kind="show" id="9mf-bU-8rb"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1420" y="360"/>
+            <point key="canvasLocation" x="1160" y="333"/>
         </scene>
     </scenes>
     <resources>

@@ -16,8 +16,9 @@ class ViewController: UIViewController {
     var moodButtons: [(UIButton, String, String, Int)] = []
     var keywords = Keywords()
     var currentView = 1
-    var currentMood = 0
+    var currentMood = -1
     var allowedToSwipe = 0
+    var returned = 0
     let screenWidth = UIScreen.mainScreen().bounds.size.width
     let screenHeight = UIScreen.mainScreen().bounds.size.height
     
@@ -96,7 +97,13 @@ class ViewController: UIViewController {
             
             clicked.setImage(UIImage(named: moodButtons[currentMood].2), forState: UIControlState())
             moodButtons[currentMood].3 = 1
-            setSuggestedKeywords()
+            
+            if self.returned == 0 {
+                setSuggestedKeywords()
+            }
+            else {
+                setExistingKeywords(keywords.entries)
+            }
         }
     }
     
@@ -142,7 +149,9 @@ class ViewController: UIViewController {
     func setSuggestedKeywords() {
         clearAllKeywords()
         let suggestedKeywords = keywordsForButton[currentMood]
+        
         for i in 0...(suggestedKeywords.count-1) {
+            
             for view in keywordsSet.subviews as [UIView] {
                 if let btn = view as? UIButton {
                     if btn.tag == suggestedKeywords[i] {
@@ -160,6 +169,39 @@ class ViewController: UIViewController {
                     }
                 }
             }
+        }
+    }
+    
+    
+    
+    func setExistingKeywords(kws: [(String, Int, Int)]) {
+        clearAllKeywords()
+
+        for i in 0...(kws.count-1) {
+            for view in keywordsSet.subviews as [UIView] {
+                if let btn = view as? UIButton {
+                    if btn.tag == i {
+                        if (kws[i].2 == 1) {
+                            keywordSelected(btn)
+                            break
+                        }
+                    }
+                }
+            }
+            
+            for view in propertiesSet.subviews as [UIView] {
+                if let btn = view as? UIButton {
+                    if btn.tag == i {
+                        if (kws[i].2 == 1) {
+                            keywordSelected(btn)
+                            break
+                        }
+                    }
+                }
+            }
+            
+            self.returned = 0
+            
         }
     }
     
@@ -227,6 +269,28 @@ class ViewController: UIViewController {
         pickMovieButton.layer.borderColor = UIColor.whiteColor().CGColor
         pickMovieButton.layer.borderWidth = 5
         
+        if (currentMood > -1) {
+            switch (currentMood) {
+            case 0:
+                moodButtonClicked(happyButton)
+            case 1:
+                moodButtonClicked(sadButton)
+            case 2:
+                moodButtonClicked(angryButton)
+            case 3:
+                moodButtonClicked(inloveButton)
+            case 4:
+                moodButtonClicked(coolButton)
+            case 5:
+                moodButtonClicked(sleepyButton)
+            default:
+                print("should never reach that")
+            }
+            
+            nextView(UIButton())
+            nextView(UIButton())
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -235,7 +299,7 @@ class ViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let secondScene = segue.destinationViewController as! MoviesPickedTVC
+        let secondScene = segue.destinationViewController as! SecondViewController
         secondScene.keywords = self.keywords
         secondScene.mood = self.currentMood
         

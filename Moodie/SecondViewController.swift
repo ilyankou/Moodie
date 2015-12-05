@@ -1,14 +1,16 @@
 //
-//  MoviesPickedTVC.swift
+//  SecondViewController.swift
 //  Moodie
 //
-//  Created by Anastasia Menshikova on 19/11/2015.
+//  Created by Ilya Ilyankou on 12/4/15.
 //  Copyright © 2015 Ilya Ilyankou. All rights reserved.
 //
 
 import UIKit
 
-class MoviesPickedTVC: UITableViewController {
+class SecondViewController: UIViewController, UITableViewDelegate {
+    
+    @IBOutlet weak var tvBg: UIWebView!
     
     var keywords: Keywords?
     var mood = 0
@@ -17,7 +19,11 @@ class MoviesPickedTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let url = NSBundle.mainBundle().URLForResource("tv-bg", withExtension: "html")!
+        tvBg.loadRequest(NSURLRequest(URL: url))
+        tvBg.scrollView.scrollEnabled = false;
+        
         let path = NSBundle.mainBundle().pathForResource("movies", ofType:"db")
         let database = FMDatabase(path: path)
         
@@ -52,8 +58,8 @@ class MoviesPickedTVC: UITableViewController {
             moodieRanking[id] *= dbRating
             
         }
-
-
+        
+        
         
         // Getting the list of 10 highest Moodie-rated movies
         for _ in 0...9 {
@@ -79,25 +85,25 @@ class MoviesPickedTVC: UITableViewController {
             moodieRanking[maxIndex] = 0.0
             
         }
-
+        
         
         database.close()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return moodieFinal.count
     }
-
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
@@ -114,58 +120,23 @@ class MoviesPickedTVC: UITableViewController {
         return cell
     }
     
-    @IBAction func goBack(sender: AnyObject) {
-        print("HIT HIT HIT HIT HIT")
-    }
     
-    /*override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->CGFloat {
-        return tableView.frame.size.height;
-    }*/
-    
-
-    
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return false
-    }
-    
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let firstScene = segue.destinationViewController as! ViewController
+        firstScene.keywords = self.keywords!
+        firstScene.currentMood = self.mood
+        firstScene.allowedToSwipe = 1
+        firstScene.returned = 1
+        /*
+        for vw in firstScene.view.subviews {
+            if vw.tag == self.mood {
+                if let moodButton = vw as? UIButton {
+                    firstScene.moodButtonClicked(moodButton)
+                    break
+                }
+            }
+        }*/
+        
     }
-    */
-
+    
 }

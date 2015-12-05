@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5DA3E3F51BFE3362009B167D /* MoviesPickedTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3E3F41BFE3362009B167D /* MoviesPickedTVC.swift */; };
 		EE1A3BEC1BF2F1070092DE1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1A3BEB1BF2F1070092DE1C /* AppDelegate.swift */; };
 		EE1A3BEE1BF2F1070092DE1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1A3BED1BF2F1070092DE1C /* ViewController.swift */; };
 		EE1A3BF11BF2F1070092DE1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE1A3BEF1BF2F1070092DE1C /* Main.storyboard */; };
@@ -22,11 +21,13 @@
 		EE62D0B51C10AAC8002E60D2 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62D0B01C10AAC8002E60D2 /* FMDatabasePool.m */; };
 		EE62D0EB1C10C8C3002E60D2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EE62D0EA1C10C8C3002E60D2 /* libsqlite3.tbd */; };
 		EE62D0ED1C10D406002E60D2 /* movies.db in Resources */ = {isa = PBXBuildFile; fileRef = EE62D0EC1C10D3CA002E60D2 /* movies.db */; };
+		EE62D0EF1C123FCD002E60D2 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62D0EE1C123FCC002E60D2 /* SecondViewController.swift */; };
+		EE62D0F11C1274E4002E60D2 /* tv-bg.html in Resources */ = {isa = PBXBuildFile; fileRef = EE62D0F01C1274E4002E60D2 /* tv-bg.html */; };
+		EE62D0F31C127574002E60D2 /* tv-bg.gif in Resources */ = {isa = PBXBuildFile; fileRef = EE62D0F21C127574002E60D2 /* tv-bg.gif */; };
 		EEE47FCB1BF6C5F20012D304 /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE47FCA1BF6C5F20012D304 /* Keywords.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5DA3E3F41BFE3362009B167D /* MoviesPickedTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesPickedTVC.swift; sourceTree = "<group>"; };
 		EE1A3BE81BF2F1070092DE1C /* Moodie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moodie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE1A3BEB1BF2F1070092DE1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE1A3BED1BF2F1070092DE1C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +51,9 @@
 		EE62D0B81C10ABCE002E60D2 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		EE62D0EA1C10C8C3002E60D2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EE62D0EC1C10D3CA002E60D2 /* movies.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = movies.db; sourceTree = "<group>"; };
+		EE62D0EE1C123FCC002E60D2 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		EE62D0F01C1274E4002E60D2 /* tv-bg.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "tv-bg.html"; sourceTree = "<group>"; };
+		EE62D0F21C127574002E60D2 /* tv-bg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "tv-bg.gif"; sourceTree = "<group>"; };
 		EEE47FCA1BF6C5F20012D304 /* Keywords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keywords.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,15 +92,17 @@
 				EE62D0B71C10AADC002E60D2 /* Database */,
 				EE237F5A1BF3CA7E00D71167 /* background.html */,
 				EE237F581BF3A6DA00D71167 /* background.gif */,
+				EE62D0F21C127574002E60D2 /* tv-bg.gif */,
+				EE62D0F01C1274E4002E60D2 /* tv-bg.html */,
 				EE1A3BEB1BF2F1070092DE1C /* AppDelegate.swift */,
 				EE62D0B81C10ABCE002E60D2 /* Header.h */,
 				EE1A3BED1BF2F1070092DE1C /* ViewController.swift */,
 				EEE47FCA1BF6C5F20012D304 /* Keywords.swift */,
 				EE1A3BEF1BF2F1070092DE1C /* Main.storyboard */,
+				EE62D0EE1C123FCC002E60D2 /* SecondViewController.swift */,
 				EE1A3BF21BF2F1080092DE1C /* Assets.xcassets */,
 				EE1A3BF41BF2F1080092DE1C /* LaunchScreen.storyboard */,
 				EE1A3BF71BF2F1080092DE1C /* Info.plist */,
-				5DA3E3F41BFE3362009B167D /* MoviesPickedTVC.swift */,
 			);
 			path = Moodie;
 			sourceTree = "<group>";
@@ -180,9 +186,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE62D0ED1C10D406002E60D2 /* movies.db in Resources */,
+				EE62D0F11C1274E4002E60D2 /* tv-bg.html in Resources */,
 				EE1A3BF61BF2F1080092DE1C /* LaunchScreen.storyboard in Resources */,
 				EE1A3BF31BF2F1080092DE1C /* Assets.xcassets in Resources */,
 				EE237F591BF3A6DA00D71167 /* background.gif in Resources */,
+				EE62D0F31C127574002E60D2 /* tv-bg.gif in Resources */,
 				EE237F5B1BF3CA7E00D71167 /* background.html in Resources */,
 				EE1A3BF11BF2F1070092DE1C /* Main.storyboard in Resources */,
 			);
@@ -202,7 +210,7 @@
 				EE62D0B41C10AAC8002E60D2 /* FMDatabaseAdditions.m in Sources */,
 				EE62D0B11C10AAC8002E60D2 /* FMDatabase.m in Sources */,
 				EE62D0B51C10AAC8002E60D2 /* FMDatabasePool.m in Sources */,
-				5DA3E3F51BFE3362009B167D /* MoviesPickedTVC.swift in Sources */,
+				EE62D0EF1C123FCD002E60D2 /* SecondViewController.swift in Sources */,
 				EE1A3BEC1BF2F1070092DE1C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
