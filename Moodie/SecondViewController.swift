@@ -39,6 +39,9 @@ class SecondViewController: UIViewController, UITableViewDelegate {
             
             let id = Int(rs.intForColumn("ID"))
             let dbKeywords = String(rs.stringForColumn("KEYWORDS"))
+            
+            let denom = Double(dbKeywords.componentsSeparatedByString(" ").count)
+            
             let dbRating = Double(rs.doubleForColumn("RATING"))
             
             moodieRanking.append(100.0)
@@ -50,7 +53,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                 let selectedKeyword = kword.0.stringByReplacingOccurrencesOfString(" ", withString:"-")
                 
                 if dbKeywords.rangeOfString(selectedKeyword) != nil {
-                    moodieRanking[id] += 100.0
+                    moodieRanking[id] += 100.0 * Double(kword.1) / denom
                     
                 }
             }
@@ -109,17 +112,60 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         
         
         let movieTitleLabel = self.view.viewWithTag(69) as! UILabel
+        let moviePlotLabel = self.view.viewWithTag(79) as! UILabel
+        let moviePoster = self.view.viewWithTag(99) as! UIImageView
         
         
         let movieTitle = moodieFinal[indexPath.row]["title"]!
         let movieYear = moodieFinal[indexPath.row]["year"]!
         
+        let movieData = parseJSON(getJSONforMovie(movieTitle, year: movieYear))
+        
         
         movieTitleLabel.text = "\(movieTitle) (\(movieYear))"
+        
+        moviePlotLabel.text = movieData["Plot"] as? String
+        
+        let imgURL = NSURL(string: (movieData["Poster"] as? String)!)
+        if let imgData = NSData(contentsOfURL: imgURL!) {
+            moviePoster.image = UIImage(data: imgData)
+        }
+        
         
         return cell
     }
     
+    
+    func getJSONforMovie(var titleToRequest: String, year: String) -> NSData {
+        titleToRequest = titleToRequest.stringByReplacingOccurrencesOfString(" ", withString: "+")
+        
+        if let toReturn = NSData(contentsOfURL: (NSURL(string: "http://www.omdbapi.com/?t=\(titleToRequest)&y=\(year)&plot=full&r=json")!)) {
+            return toReturn
+        }
+        
+        return NSData()
+    }
+    
+    
+    
+    func parseJSON(data: NSData) -> NSDictionary {
+        
+        do {
+            if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? NSDictionary {
+                print(jsonResult)
+                return jsonResult
+            }
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+        return NSDictionary()
+        
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 700.0
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let firstScene = segue.destinationViewController as! ViewController

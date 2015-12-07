@@ -289,13 +289,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label userInteractionEnabled="NO" alpha="0.80000000000000004" tag="69" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f21-aI-l8D" userLabel="movieTitle">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="69" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f21-aI-l8D" userLabel="movieTitle">
                                                     <rect key="frame" x="270" y="46" width="42" height="21"/>
                                                     <animations/>
-                                                    <color key="backgroundColor" red="0.98140391026409679" green="0.9981682268054527" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                                    <color key="textColor" red="0.98140391029999996" green="0.99816822679999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="0.14828529869176355" blue="0.30392683513512486" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" tag="99" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4cY-q1-pk5">
+                                                    <rect key="frame" x="180" y="-14" width="240" height="128"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="79" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uR1-Ib-Sz4" userLabel="moviePlot">
+                                                    <rect key="frame" x="279" y="40" width="42" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.98140391029999996" green="0.99816822679999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <animations/>
@@ -303,6 +314,9 @@
                                                 <constraint firstItem="f21-aI-l8D" firstAttribute="width" secondItem="5fo-OR-eJh" secondAttribute="width" constant="-30" id="3qq-fo-bdj"/>
                                                 <constraint firstItem="f21-aI-l8D" firstAttribute="top" secondItem="5fo-OR-eJh" secondAttribute="topMargin" id="8wH-6H-Q0m"/>
                                                 <constraint firstItem="f21-aI-l8D" firstAttribute="leading" secondItem="5fo-OR-eJh" secondAttribute="leading" constant="15" id="L9p-Eq-f6x"/>
+                                                <constraint firstItem="uR1-Ib-Sz4" firstAttribute="width" secondItem="f21-aI-l8D" secondAttribute="width" id="dVy-nx-MQQ"/>
+                                                <constraint firstItem="uR1-Ib-Sz4" firstAttribute="top" secondItem="4cY-q1-pk5" secondAttribute="bottom" constant="5" id="fbb-yB-LlA"/>
+                                                <constraint firstItem="4cY-q1-pk5" firstAttribute="top" secondItem="f21-aI-l8D" secondAttribute="bottom" constant="5" id="o46-Xv-Wwu"/>
                                                 <constraint firstAttribute="trailing" secondItem="f21-aI-l8D" secondAttribute="trailing" constant="15" id="yYY-Jc-UEz"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -310,6 +324,11 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="4cY-q1-pk5" secondAttribute="trailing" id="9no-PG-Yvm"/>
+                                            <constraint firstItem="uR1-Ib-Sz4" firstAttribute="leading" secondItem="tEG-hs-LsO" secondAttribute="leading" constant="15" id="j4C-1a-3sz"/>
+                                            <constraint firstItem="4cY-q1-pk5" firstAttribute="leading" secondItem="tEG-hs-LsO" secondAttribute="leading" id="lAd-g9-RNN"/>
+                                        </constraints>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
