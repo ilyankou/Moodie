@@ -16,6 +16,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     var mood = 0
     var moodieRanking : [Double] = [0.0]
     var moodieFinal : [[String: String]] = []
+    var moodieFinalPosters : [NSData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +84,37 @@ class SecondViewController: UIViewController, UITableViewDelegate {
             let myTitle = String(rs.stringForColumn("TITLE"))
             let myYear = String(rs.intForColumn("YEAR"))
             
-            moodieFinal.append(["title": myTitle, "year": myYear])
+            let movieData = parseJSON(getJSONforMovie(myTitle, year: myYear))
+            
+            if movieData["Plot"] != nil {
+                moodieFinal.append(["title": myTitle,
+                    "year": myYear,
+                    "plot": (movieData["Plot"] as! String) + " More...",
+                    "poster": movieData["Poster"] as! String,
+                    "imdbid": movieData["imdbID"] as! String
+                    ])
+            } else {
+                moodieFinal.append(["title": myTitle,
+                    "year": myYear,
+                    "plot": "No description available.",
+                    "poster": "",
+                    "imdbid": ""
+                    ])
+            }
+            
+            let imgURL = NSURL(string: movieData["Poster"] as! String)
+            if let imgData = NSData(contentsOfURL: imgURL!) {
+                moodieFinalPosters.append(imgData)
+            }
+            
+            /*
+            moodieFinal.append(["title": myTitle,
+                                 "year": myYear,
+                                 "plot": movieData["Plot"] as! String,
+                                 "poster": movieData["Poster"] as! String,
+                                 "imdbid": movieData["imdbID"] as! String
+                               ])
+            */
             
             moodieRanking[maxIndex] = 0.0
             
@@ -110,36 +141,58 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
-        
         let movieTitleLabel = self.view.viewWithTag(69) as! UILabel
-        let moviePlotLabel = self.view.viewWithTag(79) as! UILabel
-        let moviePoster = self.view.viewWithTag(99) as! UIImageView
+        let moviePlotButton = self.view.viewWithTag(79) as! UIButton
+        let moviePosterLabel = self.view.viewWithTag(99) as! UIImageView
         
+        //let movieTrailerButton = self.view.viewWithTag(44) as! UIButton
+        //movieTrailerButton.setTitle("Watch Trailer", forState: UIControlState.Normal)
+        
+        moviePlotButton.addTarget(self, action: "goToIMDB:", forControlEvents: UIControlEvents.TouchUpInside)
+
         
         let movieTitle = moodieFinal[indexPath.row]["title"]!
         let movieYear = moodieFinal[indexPath.row]["year"]!
-        
-        let movieData = parseJSON(getJSONforMovie(movieTitle, year: movieYear))
+        let moviePlot = moodieFinal[indexPath.row]["plot"]!
+        let moviePoster = moodieFinal[indexPath.row]["poster"]!
+        let movieIMDBid = moodieFinal[indexPath.row]["imdbid"]!
         
         
         movieTitleLabel.text = "\(movieTitle) (\(movieYear))"
+        moviePlotButton.setTitle(moviePlot, forState: UIControlState.Normal)
         
-        moviePlotLabel.text = movieData["Plot"] as? String
-        
-        let imgURL = NSURL(string: (movieData["Poster"] as? String)!)
-        if let imgData = NSData(contentsOfURL: imgURL!) {
-            moviePoster.image = UIImage(data: imgData)
-        }
-        
+        moviePosterLabel.image = UIImage(data: self.moodieFinalPosters[indexPath.row])
+
         
         return cell
     }
+    
+    func goToIMDB (sender : AnyObject) {
+        let lbl = sender as! UIButton
+        
+        print(lbl.tag)
+        
+        for i in 0...9 {
+            if moodieFinal[i]["plot"] == lbl.currentTitle {
+                let imdbURL = String("http://imdb.com/title/" + moodieFinal[i]["imdbid"]!)
+                UIApplication.sharedApplication().openURL(NSURL(string: imdbURL)!)
+            }
+        }
+    }
+    
+    
+    /*
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        print("cell height!")
+        //return CGFloat(200 + moodieFinal[indexPath.row]["plot"]!.characters.count)
+        return 100.0
+    }*/
     
     
     func getJSONforMovie(var titleToRequest: String, year: String) -> NSData {
         titleToRequest = titleToRequest.stringByReplacingOccurrencesOfString(" ", withString: "+")
         
-        if let toReturn = NSData(contentsOfURL: (NSURL(string: "http://www.omdbapi.com/?t=\(titleToRequest)&y=\(year)&plot=full&r=json")!)) {
+        if let toReturn = NSData(contentsOfURL: (NSURL(string: "http://www.omdbapi.com/?t=\(titleToRequest)&y=\(year)&plot=short&r=json")!)) {
             return toReturn
         }
         
@@ -149,10 +202,9 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     
     
     func parseJSON(data: NSData) -> NSDictionary {
-        
         do {
             if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? NSDictionary {
-                print(jsonResult)
+                //print(jsonResult)
                 return jsonResult
             }
         } catch let error as NSError {
