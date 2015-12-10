@@ -56,9 +56,13 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                     moodieRanking[id] += 100.0 * Double(kword.1) / denom
                     
                 }
+                //let kwordWeight = kword.1
+                
             }
             
             moodieRanking[id] *= dbRating
+            
+            
             
         }
         
@@ -75,6 +79,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                     maxIndex = j
                 }
             }
+            
             
             sql = "SELECT * FROM MOVIES WHERE ID = \(maxIndex);"
             rs = database.executeQuery(sql, withArgumentsInArray: nil)
