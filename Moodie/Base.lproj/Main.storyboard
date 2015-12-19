@@ -277,19 +277,16 @@
                                                     <color key="textColor" red="0.98140391029999996" green="0.99816822679999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="0.14828529869176355" blue="0.30392683513512486" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="99" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4cY-q1-pk5">
+                                                <imageView userInteractionEnabled="NO" tag="99" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4cY-q1-pk5">
                                                     <rect key="frame" x="180" y="-14" width="240" height="128"/>
-                                                    <color key="backgroundColor" red="0.074777131199999999" green="1" blue="0.2346593578" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="400" id="0bk-Xy-Ucn"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" tag="79" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="h91-nb-qWD" userLabel="Plot">
+                                                <button opaque="NO" tag="79" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="h91-nb-qWD" userLabel="Plot">
                                                     <rect key="frame" x="277" y="35" width="600" height="400"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="200" id="Fhq-TM-Sus"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <state key="normal" title="Button">
                                                         <color key="titleColor" red="1" green="0.9864041576" blue="0.97504420920000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -297,13 +294,12 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="h91-nb-qWD" firstAttribute="width" secondItem="4cY-q1-pk5" secondAttribute="width" id="1hh-fl-rSI"/>
                                                 <constraint firstItem="f21-aI-l8D" firstAttribute="width" secondItem="5fo-OR-eJh" secondAttribute="width" constant="-30" id="3qq-fo-bdj"/>
                                                 <constraint firstItem="f21-aI-l8D" firstAttribute="top" secondItem="5fo-OR-eJh" secondAttribute="topMargin" id="8wH-6H-Q0m"/>
-                                                <constraint firstItem="h91-nb-qWD" firstAttribute="top" secondItem="4cY-q1-pk5" secondAttribute="bottom" constant="5" id="Hmj-kf-UpM"/>
                                                 <constraint firstItem="f21-aI-l8D" firstAttribute="leading" secondItem="5fo-OR-eJh" secondAttribute="leading" constant="15" id="L9p-Eq-f6x"/>
                                                 <constraint firstItem="4cY-q1-pk5" firstAttribute="top" secondItem="f21-aI-l8D" secondAttribute="bottom" constant="5" id="o46-Xv-Wwu"/>
                                                 <constraint firstAttribute="trailing" secondItem="f21-aI-l8D" secondAttribute="trailing" constant="15" id="yYY-Jc-UEz"/>
+                                                <constraint firstItem="h91-nb-qWD" firstAttribute="top" secondItem="4cY-q1-pk5" secondAttribute="bottom" constant="5" id="z0g-Hz-xmL"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -312,6 +308,7 @@
                                         <constraints>
                                             <constraint firstItem="4cY-q1-pk5" firstAttribute="centerX" secondItem="tEG-hs-LsO" secondAttribute="centerX" id="1e7-HO-9tY"/>
                                             <constraint firstItem="h91-nb-qWD" firstAttribute="width" secondItem="tEG-hs-LsO" secondAttribute="width" constant="-10" id="4Te-qC-AWz"/>
+                                            <constraint firstAttribute="bottom" secondItem="h91-nb-qWD" secondAttribute="bottom" constant="10" id="Hyv-3c-M9Y"/>
                                             <constraint firstItem="h91-nb-qWD" firstAttribute="leading" secondItem="tEG-hs-LsO" secondAttribute="leading" constant="5" id="RdK-uw-jAr"/>
                                         </constraints>
                                     </tableViewCell>

@@ -34,17 +34,15 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         
         if !database.open() {
             print("Unable to open database")
-            return
         }
         
         
-        // Selecting all contents 
+        // Selecting all contents of the MOVIES table
         var sql = "SELECT * FROM MOVIES;"
         var rs = database.executeQuery(sql, withArgumentsInArray: nil)
         
-        // C
+        // For each entry in the MOVIES table, do the ranking
         while rs.next() {
-            
             let id = Int(rs.intForColumn("ID"))
             let dbKeywords = String(rs.stringForColumn("KEYWORDS"))
             
@@ -94,6 +92,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
             let movieData = parseJSON(getJSONforMovie(myTitle, year: myYear))
             
             if movieData["Plot"] != nil {
+            // Retrieving necessary info from NSDictionary containing appropriate JSON
                 moodieFinal.append(["title": myTitle,
                     "year": myYear,
                     "plot": (movieData["Plot"] as! String) + " More...",
@@ -101,13 +100,21 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                     "imdbid": movieData["imdbID"] as! String
                     ])
 
+                // Retrieving the poster image
                 let imgURL = NSURL(string: movieData["Poster"] as! String)
                 if let imgData = NSData(contentsOfURL: imgURL!) {
                     moodieFinalPosters.append(imgData)
                 }
                 
+                // If the poster can't be retrieved, load "no movie poster"
+                else {
+                    moodieFinalPosters.append(NSData(contentsOfURL: NSURL(string: "https://ilyankou.files.wordpress.com/2015/12/noposteravailable.jpg")!)!)
+                }
                 
-            } else {
+                
+            }
+            // In case OMDb did not have the movie, set things empty
+            else {
                 moodieFinal.append(["title": myTitle,
                     "year": myYear,
                     "plot": "No description available.",
@@ -115,71 +122,85 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                     "imdbid": "n"
                     ])
                 
+                // The "no movie poster" image
+                let imgURL = NSURL(string: "https://ilyankou.files.wordpress.com/2015/12/noposteravailable.jpg")
+                if let imgData = NSData(contentsOfURL: imgURL!) {
+                    moodieFinalPosters.append(imgData)
+                }
+                
                 moodieFinalPosters.append(NSData())
             }
             
-
-            
-            /*
-            moodieFinal.append(["title": myTitle,
-                                 "year": myYear,
-                                 "plot": movieData["Plot"] as! String,
-                                 "poster": movieData["Poster"] as! String,
-                                 "imdbid": movieData["imdbID"] as! String
-                               ])
-            */
-            
             moodieRanking[maxIndex] = 0.0
-            
         }
-        
         
         database.close()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
+    /**
+        One section for the table view
+    */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
+    /**
+        Ten reusable cells for the table view
+    */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return moodieFinal.count
     }
     
     
+    /**
+        Calculates and returns the height of a cell depending on the movie description length
+     */
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let descriptionLength = CGFloat(moodieFinal[indexPath.row]["plot"]!.characters.count)
+        return 550.0 + descriptionLength*0.5
+    }
+    
+
+    /**
+        Customizes and returns reusable cell at indexPath
+     */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
+        // Gets the elements of cell's layout by their tags
         let movieTitleLabel = self.view.viewWithTag(69) as! UILabel
         let moviePlotButton = self.view.viewWithTag(79) as! UIButton
         let moviePosterLabel = self.view.viewWithTag(99) as! UIImageView
         
-        //let movieTrailerButton = self.view.viewWithTag(44) as! UIButton
-        //movieTrailerButton.setTitle("Watch Trailer", forState: UIControlState.Normal)
-        
-        moviePlotButton.addTarget(self, action: "goToIMDB:", forControlEvents: UIControlEvents.TouchUpInside)
-
-        
+        // Retrieves movie title, year, and description from the array
         let movieTitle = moodieFinal[indexPath.row]["title"]!
         let movieYear = moodieFinal[indexPath.row]["year"]!
         let moviePlot = moodieFinal[indexPath.row]["plot"]!
-        //let moviePoster = moodieFinal[indexPath.row]["poster"]!
-        //let movieIMDBid = moodieFinal[indexPath.row]["imdbid"]!
         
+        // Sets the UI: label for movie title, and title for button with description
         movieTitleLabel.text = "\(movieTitle) (\(movieYear))"
         moviePlotButton.setTitle(moviePlot, forState: UIControlState.Normal)
         moviePlotButton.titleLabel?.textAlignment = .Center
-        
-        moviePosterLabel.image = UIImage(data: self.moodieFinalPosters[indexPath.row])
 
+        // Sets the image
+        if indexPath.row < moodieFinalPosters.count {
+            moviePosterLabel.image = UIImage(data: self.moodieFinalPosters[indexPath.row])
+        }
         
+        // Do "goToIMDB()" when description button is hit
+        moviePlotButton.addTarget(self, action: "goToIMDB:", forControlEvents: UIControlEvents.TouchUpInside)
+
         return cell
     }
     
+    
+    /**
+        Opens the browser app with the movie description on IMDB website
+     
+        - Parameter sender: the button with the movie description
+        - Returns: nothing
+    */
     func goToIMDB (sender : AnyObject) {
         let lbl = sender as! UIButton
         
@@ -194,14 +215,16 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     }
     
     
-    
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        print("cell height!")
-        //return CGFloat(200 + moodieFinal[indexPath.row]["plot"]!.characters.count)
-        return 100.0
-    }
-    
-    
+    /**
+        Fetches the JSON with movie information using OMDb API
+     
+        - Parameters:
+            - titleToRequest: title of the movie we want to get info for
+            - year: the year of this movie, to insure we get the right movie
+     
+        - Returns: an NSData object with JSON about the movie, or an empty NSData
+                   if wasn't able to fetch the contents of the URL
+     */
     func getJSONforMovie(var titleToRequest: String, year: String) -> NSData {
         titleToRequest = titleToRequest.stringByReplacingOccurrencesOfString(" ", withString: "+")
         
@@ -213,11 +236,15 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     }
     
     
-    
+    /**
+        Converts NSData into NSDictionary using NSJSONSerialization
+     
+        - Parameter data: an NSData object containing JSON from OMDb
+        - Returns: an NSDictionary object with the same information
+     */
     func parseJSON(data: NSData) -> NSDictionary {
         do {
             if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? NSDictionary {
-                //print(jsonResult)
                 return jsonResult
             }
         } catch let error as NSError {
@@ -228,26 +255,20 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 700.0
-    }
-    
+    /**
+        Sets the necessary variables of the First View Controller before going to it
+    */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let firstScene = segue.destinationViewController as! ViewController
         firstScene.keywords = self.keywords!
         firstScene.currentMood = self.mood
         firstScene.allowedToSwipe = 1
         firstScene.returned = 1
-        /*
-        for vw in firstScene.view.subviews {
-            if vw.tag == self.mood {
-                if let moodButton = vw as? UIButton {
-                    firstScene.moodButtonClicked(moodButton)
-                    break
-                }
-            }
-        }*/
-        
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
 }
