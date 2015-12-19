@@ -1,5 +1,6 @@
 //
 //  SecondViewController.swift
+//  Finds out the best movie matches and displays them
 //  Moodie
 //
 //  Created by Ilya Ilyankou on 12/4/15.
@@ -21,10 +22,13 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Loading the grey animated background
         let url = NSBundle.mainBundle().URLForResource("tv-bg", withExtension: "html")!
         tvBg.loadRequest(NSURLRequest(URL: url))
         tvBg.scrollView.scrollEnabled = false;
         
+        
+        // Opening the database
         let path = NSBundle.mainBundle().pathForResource("movies", ofType:"db")
         let database = FMDatabase(path: path)
         
@@ -33,9 +37,12 @@ class SecondViewController: UIViewController, UITableViewDelegate {
             return
         }
         
+        
+        // Selecting all contents 
         var sql = "SELECT * FROM MOVIES;"
         var rs = database.executeQuery(sql, withArgumentsInArray: nil)
         
+        // C
         while rs.next() {
             
             let id = Int(rs.intForColumn("ID"))
@@ -61,7 +68,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                 
             }
             
-            moodieRanking[id] *= dbRating
+            moodieRanking[id] += dbRating
             
             
             
@@ -98,19 +105,25 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                     "poster": movieData["Poster"] as! String,
                     "imdbid": movieData["imdbID"] as! String
                     ])
+
+                let imgURL = NSURL(string: movieData["Poster"] as! String)
+                if let imgData = NSData(contentsOfURL: imgURL!) {
+                    moodieFinalPosters.append(imgData)
+                }
+                
+                
             } else {
                 moodieFinal.append(["title": myTitle,
                     "year": myYear,
                     "plot": "No description available.",
-                    "poster": "",
-                    "imdbid": ""
+                    "poster": "n",
+                    "imdbid": "n"
                     ])
+                
+                moodieFinalPosters.append(NSData())
             }
             
-            let imgURL = NSURL(string: movieData["Poster"] as! String)
-            if let imgData = NSData(contentsOfURL: imgURL!) {
-                moodieFinalPosters.append(imgData)
-            }
+
             
             /*
             moodieFinal.append(["title": myTitle,
@@ -159,12 +172,12 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         let movieTitle = moodieFinal[indexPath.row]["title"]!
         let movieYear = moodieFinal[indexPath.row]["year"]!
         let moviePlot = moodieFinal[indexPath.row]["plot"]!
-        let moviePoster = moodieFinal[indexPath.row]["poster"]!
-        let movieIMDBid = moodieFinal[indexPath.row]["imdbid"]!
-        
+        //let moviePoster = moodieFinal[indexPath.row]["poster"]!
+        //let movieIMDBid = moodieFinal[indexPath.row]["imdbid"]!
         
         movieTitleLabel.text = "\(movieTitle) (\(movieYear))"
         moviePlotButton.setTitle(moviePlot, forState: UIControlState.Normal)
+        moviePlotButton.titleLabel?.textAlignment = .Center
         
         moviePosterLabel.image = UIImage(data: self.moodieFinalPosters[indexPath.row])
 
@@ -186,12 +199,12 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     }
     
     
-    /*
+    
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         print("cell height!")
         //return CGFloat(200 + moodieFinal[indexPath.row]["plot"]!.characters.count)
         return 100.0
-    }*/
+    }
     
     
     func getJSONforMovie(var titleToRequest: String, year: String) -> NSData {

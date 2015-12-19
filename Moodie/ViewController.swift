@@ -40,12 +40,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var sleepyButton: UIButton!
     
     var keywordsForButton = [
-        [11, 20, 21, 24, 38, 45],   //  happy
-        [0, 12, 22, 57],   //  sad
-        [0,1,2],   //  angry
+        [2, 11, 20, 21, 24, 38, 45],   //  happy
+        [0, 3, 12, 22, 57],   //  sad
+        [2, 8, 11, 14, 48, 51],   //  angry
         [2, 13, 16, 20, 26, 27, 35, 38, 54, 65, 79],   //  inlove
-        [3],   //  cool
-        [1]    //  sleepy
+        [3, 10, 15, 19, 29, 32, 46, 55],   //  cool
+        [1, 16, 24, 38, 53]    //  sleepy
     ]
     
     @IBOutlet weak var pickMovieButton: UIButton!
@@ -211,7 +211,7 @@ class ViewController: UIViewController {
         
         let url = NSBundle.mainBundle().URLForResource("background", withExtension: "html")!
         webViewBackground.loadRequest(NSURLRequest(URL: url))
-        webViewBackground.scrollView.scrollEnabled = false;
+        webViewBackground.scrollView.scrollEnabled = false
         
         moodButtons.append((happyButton, "happy-button", "happy-button-reverse", 0))
         moodButtons.append((sadButton, "sad-button", "sad-button-reverse", 0))
