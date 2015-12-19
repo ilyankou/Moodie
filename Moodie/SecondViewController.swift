@@ -1,6 +1,6 @@
 //
 //  SecondViewController.swift
-//  Finds out the best movie matches and displays them
+//  Calculates the best movie matches and displays them
 //  Moodie
 //
 //  Created by Ilya Ilyankou on 12/4/15.
@@ -23,10 +23,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         // Loading the grey animated background
-        let url = NSBundle.mainBundle().URLForResource("tv-bg", withExtension: "html")!
-        tvBg.loadRequest(NSURLRequest(URL: url))
-        tvBg.scrollView.scrollEnabled = false;
-        
+        loadBackground()
         
         // Opening the database
         let path = NSBundle.mainBundle().pathForResource("movies", ofType:"db")
@@ -41,17 +38,14 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         var sql = "SELECT * FROM MOVIES;"
         var rs = database.executeQuery(sql, withArgumentsInArray: nil)
         
-        // For each entry in the MOVIES table, do the ranking
+        // For each entry in the MOVIES table, calculating ranking
         while rs.next() {
             let id = Int(rs.intForColumn("ID"))
             let dbKeywords = String(rs.stringForColumn("KEYWORDS"))
-            
             let denom = Double(dbKeywords.componentsSeparatedByString(" ").count)
-            
             let dbRating = Double(rs.doubleForColumn("RATING"))
             
-            moodieRanking.append(100.0)
-            
+            moodieRanking.append(dbRating)
             
             for kword in keywords!.entries {
                 if kword.2 == 0 {continue}
@@ -60,18 +54,16 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                 
                 if dbKeywords.rangeOfString(selectedKeyword) != nil {
                     moodieRanking[id] += 100.0 * Double(kword.1) / denom
-                    
                 }
             }
             
-            moodieRanking[id] += dbRating
+            moodieRanking[id] *= dbRating
             
         }
         
         
-        
-        // Getting the list of 10 highest Moodie-rated movies
-        for _ in 0...9 {
+        // Getting the list of 20 highest Moodie-rated movies
+        for _ in 0...19 {
             var max = 0.0
             var maxIndex = 0
             
@@ -127,8 +119,6 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                 if let imgData = NSData(contentsOfURL: imgURL!) {
                     moodieFinalPosters.append(imgData)
                 }
-                
-                moodieFinalPosters.append(NSData())
             }
             
             moodieRanking[maxIndex] = 0.0
@@ -139,17 +129,29 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     
     
     /**
+        Sets the animated grey background
+     */
+    func loadBackground() {
+        let url = NSBundle.mainBundle().URLForResource("tv-bg", withExtension: "html")!
+        tvBg.loadRequest(NSURLRequest(URL: url))
+        tvBg.scrollView.scrollEnabled = false;
+    }
+    
+    
+    /**
         One section for the table view
     */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
+    
     /**
-        Ten reusable cells for the table view
+        Twenty reusable cells for the table view
     */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return moodieFinal.count
+        return 20
+        //return moodieFinal.count
     }
     
     
@@ -158,7 +160,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
      */
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let descriptionLength = CGFloat(moodieFinal[indexPath.row]["plot"]!.characters.count)
-        return 550.0 + descriptionLength*0.5
+        return 550.0 + descriptionLength * 0.5
     }
     
 
@@ -204,9 +206,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     func goToIMDB (sender : AnyObject) {
         let lbl = sender as! UIButton
         
-        print(lbl.tag)
-        
-        for i in 0...9 {
+        for i in 0...19 {
             if moodieFinal[i]["plot"] == lbl.currentTitle {
                 let imdbURL = String("http://imdb.com/title/" + moodieFinal[i]["imdbid"]!)
                 UIApplication.sharedApplication().openURL(NSURL(string: imdbURL)!)
@@ -231,7 +231,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         if let toReturn = NSData(contentsOfURL: (NSURL(string: "http://www.omdbapi.com/?t=\(titleToRequest)&y=\(year)&plot=short&r=json")!)) {
             return toReturn
         }
-        
+        // If couldn't fetch, return empty NSData
         return NSData()
     }
     
@@ -255,6 +255,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         
     }
     
+    
     /**
         Sets the necessary variables of the First View Controller before going to it
     */
@@ -267,6 +268,9 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     }
     
     
+    /**
+        Don't do anything unusual thing when memory warning received. Because, well, what can you do?
+    */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
