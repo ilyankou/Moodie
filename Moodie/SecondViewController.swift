@@ -71,7 +71,6 @@ class SecondViewController: UIViewController, UITableViewDelegate {
             moodieRanking[id] += dbRating
             
             
-            
         }
         
         

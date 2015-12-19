@@ -1,9 +1,10 @@
 //
 //  ViewController.swift
+//  ViewController for the Home Screen, Keyword Screen 1 and Keyword Screen 2
 //  Moodie
 //
-//  Created by Ilya Ilyankou and Anastatija Mensikova on 11/10/15.
-//  Copyright © 2015 Ilya Ilyankou and Anastatija Mensikova. All rights reserved.
+//  Created by Ilya Ilyankou and Anastasija Mensikova on 11/10/15.
+//  Copyright © 2015 Ilya Ilyankou and Anastasija Mensikova. All rights reserved.
 //
 
 import UIKit
@@ -39,6 +40,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var coolButton: UIButton!
     @IBOutlet weak var sleepyButton: UIButton!
     
+    /**
+        Initialisation of preset keywords depending on the mood picked
+     */
     var keywordsForButton = [
         [2, 11, 20, 21, 24, 38, 45],   //  happy
         [0, 3, 12, 22, 57],   //  sad
@@ -50,7 +54,12 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var pickMovieButton: UIButton!
     
-    
+    /**
+        Manages the action when the user swipes to the next screen; checks if the swipe can be performed
+     
+        - Parameter sender: the button
+        - Returns: nothing
+     */
     @IBAction func nextView(sender: AnyObject) {
         if allowedToSwipe == 0 {
             return
@@ -66,7 +75,12 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    /**
+        Manages the action when the user swipes to the previous screen; checks if the swipe can be performed
+     
+        - Parameter sender: the button
+        - Returns: nothing
+     */
     @IBAction func prevView(sender: AnyObject) {
         if currentView == 2 || currentView == 3 {
             UIView.animateWithDuration(0.5, animations: {
@@ -77,7 +91,12 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    /**
+        Changes the state and look of the mood button once it's clicked. Sets preselected keywords based on the button clicked
+     
+        - Parameter sender: the mood button
+        - Returns: nothing
+     */
     @IBAction func moodButtonClicked(sender: AnyObject) {
         let clicked = sender as! UIButton
         currentMood = clicked.tag
@@ -107,7 +126,12 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    /**
+        Changes the state and look of the keyword button once it's clicked
+     
+        - Parameter sender: the keyword button
+        - Returns: nothing
+     */
     func keywordSelected(sender: UIButton) {
         if keywords.changeStatus(sender.tag) == 0 {
             sender.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
@@ -119,14 +143,27 @@ class ViewController: UIViewController {
         }
     }
     
-    // Reset keywords to suggested when phone is shaken
+    /**
+        Resets keywords to suggested when phone is shaken
+    
+        - Parameters:
+            - motion: the motion of the phone (the shake)
+            - event: the event accompanying the motion
+     
+        - Returns: nothing
+    */
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
         if motion == .MotionShake {
             setSuggestedKeywords()
         }
     }
     
-    // Deselect all keywords
+    /**
+        Deselects (clears) all keywords
+    
+        - Parameters: none
+        - Returns: nothing
+    */
     func clearAllKeywords()  {
         for i in 0...(keywords.entries.count-1) {
             keywords.entries[i].2 = 1
@@ -145,7 +182,12 @@ class ViewController: UIViewController {
         }
     }
     
-    // Reset keywords on both pages to suggested
+    /**
+        Resets keywords on both pages to suggested (preselected)
+    
+        - Parameters: none
+        - Returns: nothing
+    */
     func setSuggestedKeywords() {
         clearAllKeywords()
         let suggestedKeywords = keywordsForButton[currentMood]
@@ -173,7 +215,12 @@ class ViewController: UIViewController {
     }
     
     
-    
+    /**
+        Sets keywords selected by the user
+     
+        - Parameter kws: a Keyword entry
+        - Returns: nothing (0 if invalid)
+     */
     func setExistingKeywords(kws: [(String, Int, Int)]) {
         clearAllKeywords()
 
@@ -205,7 +252,12 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    /**
+        Initialisation of the app and the VC: sets background image, adds mood buttons, adds keywords
+     
+        - Parameters: none
+        - Returns: nothing
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -293,22 +345,28 @@ class ViewController: UIViewController {
         
     }
 
+    /**
+        Disposes of any resources that can be recreated.
+     
+        - Parameters: none
+        - Returns: nothing
+     */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    /**
+        Prepares to go the SecondViewController
+     
+        - Parameters:
+            - segue: the segue to the next VC'
+            - sender: any object (button that leads to the next VC -- PICK A MOVIE!)
+        - Returns: nothing
+     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let secondScene = segue.destinationViewController as! SecondViewController
         secondScene.keywords = self.keywords
         secondScene.mood = self.currentMood
-        
-        /*
-        // Generating a string of all keywords on the screen
-        for k in self.keywords.entries {
-            print(k.0.stringByReplacingOccurrencesOfString(" ", withString: "-"), terminator:"")
-        }
-        */
     }
 
 }
