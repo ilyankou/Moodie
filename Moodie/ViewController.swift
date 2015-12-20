@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  ViewController for the Home Screen, Keyword Screen 1 and Keyword Screen 2
+//  Controls the first View containing three screens (the homescreen and two keyword sets)
 //  Moodie
 //
 //  Created by Ilya Ilyankou and Anastasija Mensikova on 11/10/15.
@@ -16,23 +16,21 @@ class ViewController: UIViewController {
     
     var moodButtons: [(UIButton, String, String, Int)] = []
     var keywords = Keywords()
-    var currentView = 1
-    var currentMood = -1
-    var allowedToSwipe = 0
-    var returned = 0
+    var currentView = 1             // either 1, 2, or 3
+    var currentMood = -1            // 0 through 5, -1 if nothing is selected
+    var allowedToSwipe = 0          // turns to 1 as soon as mood button is clicked
+    var returned = 0                // 1 if there was a segue from SeconViewController to here
+    
     let screenWidth = UIScreen.mainScreen().bounds.size.width
     let screenHeight = UIScreen.mainScreen().bounds.size.height
     
+    // Loading the necessary outlets
     @IBOutlet weak var webViewBackground: UIWebView!
-    
     @IBOutlet weak var viewOne: UIView!
-    
     @IBOutlet weak var keywordsSet: UIView!
     @IBOutlet weak var propertiesSet: UIView!
-    
     @IBOutlet weak var viewsContainer: UIView!
     @IBOutlet weak var viewsContainerLeading: NSLayoutConstraint!
-    
     @IBOutlet weak var happyButton: UIButton!
     @IBOutlet weak var sadButton: UIButton!
     @IBOutlet weak var angryButton: UIButton!
@@ -54,11 +52,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var pickMovieButton: UIButton!
     
+    
     /**
         Manages the action when the user swipes to the next screen; checks if the swipe can be performed
-     
-        - Parameter sender: the button
-        - Returns: nothing
      */
     @IBAction func nextView(sender: AnyObject) {
         if allowedToSwipe == 0 {
@@ -75,11 +71,9 @@ class ViewController: UIViewController {
         }
     }
     
+    
     /**
         Manages the action when the user swipes to the previous screen; checks if the swipe can be performed
-     
-        - Parameter sender: the button
-        - Returns: nothing
      */
     @IBAction func prevView(sender: AnyObject) {
         if currentView == 2 || currentView == 3 {
@@ -91,11 +85,12 @@ class ViewController: UIViewController {
         }
     }
     
+    
     /**
-        Changes the state and look of the mood button once it's clicked. Sets preselected keywords based on the button clicked
+        Changes the state and look of the mood button once it's clicked.
+        Sets preselected keywords based on the button clicked
      
         - Parameter sender: the mood button
-        - Returns: nothing
      */
     @IBAction func moodButtonClicked(sender: AnyObject) {
         let clicked = sender as! UIButton
@@ -126,6 +121,7 @@ class ViewController: UIViewController {
         }
     }
     
+    
     /**
         Changes the state and look of the keyword button once it's clicked
      
@@ -143,14 +139,13 @@ class ViewController: UIViewController {
         }
     }
     
+    
     /**
         Resets keywords to suggested when phone is shaken
     
         - Parameters:
             - motion: the motion of the phone (the shake)
             - event: the event accompanying the motion
-     
-        - Returns: nothing
     */
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
         if motion == .MotionShake {
@@ -158,11 +153,9 @@ class ViewController: UIViewController {
         }
     }
     
+    
     /**
         Deselects (clears) all keywords
-    
-        - Parameters: none
-        - Returns: nothing
     */
     func clearAllKeywords()  {
         for i in 0...(keywords.entries.count-1) {
@@ -182,11 +175,9 @@ class ViewController: UIViewController {
         }
     }
     
+    
     /**
         Resets keywords on both pages to suggested (preselected)
-    
-        - Parameters: none
-        - Returns: nothing
     */
     func setSuggestedKeywords() {
         clearAllKeywords()
@@ -219,12 +210,13 @@ class ViewController: UIViewController {
         Sets keywords selected by the user
      
         - Parameter kws: a Keyword entry
-        - Returns: nothing (0 if invalid)
+        - Returns: nothing
      */
     func setExistingKeywords(kws: [(String, Int, Int)]) {
         clearAllKeywords()
 
         for i in 0...(kws.count-1) {
+            // Going through all the UIViews
             for view in keywordsSet.subviews as [UIView] {
                 if let btn = view as? UIButton {
                     if btn.tag == i {
@@ -248,29 +240,40 @@ class ViewController: UIViewController {
             }
             
             self.returned = 0
-            
         }
     }
     
     /**
-        Initialisation of the app and the VC: sets background image, adds mood buttons, adds keywords
-     
-        - Parameters: none
-        - Returns: nothing
+        Initializes the array moodButtons with necessary info and button status
      */
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let url = NSBundle.mainBundle().URLForResource("background", withExtension: "html")!
-        webViewBackground.loadRequest(NSURLRequest(URL: url))
-        webViewBackground.scrollView.scrollEnabled = false
-        
+    func initializeMoodButtons() {
         moodButtons.append((happyButton, "happy-button", "happy-button-reverse", 0))
         moodButtons.append((sadButton, "sad-button", "sad-button-reverse", 0))
         moodButtons.append((angryButton, "angry-button", "angry-button-reverse", 0))
         moodButtons.append((inloveButton, "inlove-button", "inlove-button-reverse", 0))
         moodButtons.append((coolButton, "cool-button", "cool-button-reverse", 0))
         moodButtons.append((sleepyButton, "sleepy-button", "sleepy-button-reverse", 0))
+    }
+    
+    
+    /**
+        Load animated background
+     */
+    func initializeBackground() {
+        let url = NSBundle.mainBundle().URLForResource("background", withExtension: "html")!
+        webViewBackground.loadRequest(NSURLRequest(URL: url))
+        webViewBackground.scrollView.scrollEnabled = false
+    }
+    
+    
+    /**
+        Initialisation of the app and the VC: sets background image, adds mood buttons, adds keywords
+     */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        initializeBackground()
+        initializeMoodButtons()
         
         var i = 0
         var x: CGFloat = 0
@@ -318,6 +321,7 @@ class ViewController: UIViewController {
             x += w + (self.screenWidth / 40)
 
         }
+        
         pickMovieButton.layer.borderColor = UIColor.whiteColor().CGColor
         pickMovieButton.layer.borderWidth = 5
         
@@ -345,22 +349,13 @@ class ViewController: UIViewController {
         
     }
 
-    /**
-        Disposes of any resources that can be recreated.
-     
-        - Parameters: none
-        - Returns: nothing
-     */
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     /**
-        Prepares to go the SecondViewController
+        Passes necessary information to the SecondViewController before the segue
      
         - Parameters:
-            - segue: the segue to the next VC'
-            - sender: any object (button that leads to the next VC -- PICK A MOVIE!)
+            - segue: the segue to the next VC
+            - sender: the button that leads to the SecondViewController ("Pick a Movie!")
         - Returns: nothing
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -369,4 +364,12 @@ class ViewController: UIViewController {
         secondScene.mood = self.currentMood
     }
 
+    
+    /**
+     Disposes of any resources that can be recreated.
+     */
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
 }

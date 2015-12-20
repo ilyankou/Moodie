@@ -23,7 +23,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         // Loading the grey animated background
-        loadBackground()
+        initializeBackground()
         
         // Opening the database
         let path = NSBundle.mainBundle().pathForResource("movies", ofType:"db")
@@ -135,7 +135,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     /**
         Sets the animated grey background
      */
-    func loadBackground() {
+    func initializeBackground() {
         let url = NSBundle.mainBundle().URLForResource("tv-bg", withExtension: "html")!
         tvBg.loadRequest(NSURLRequest(URL: url))
         tvBg.scrollView.scrollEnabled = false;
