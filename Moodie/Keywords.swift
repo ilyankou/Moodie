@@ -1,15 +1,19 @@
 //
 //  Keywords.swift
+//  Class that represents the keyword entries for Views 2 and 3 of ViewController.swift
 //  Moodie
 //
-//  Created by Anastatija Mensikova and Ilya Ilyankou on 11/13/15.
-//  Copyright © 2015 Anastatija Mensikova and Ilya Ilyankou. All rights reserved.
+//  Created by Anastasija Mensikova and Ilya Ilyankou on 11/13/15.
+//  Copyright © 2015 Anastasija Mensikova and Ilya Ilyankou. All rights reserved.
 //
 
 import UIKit
 
 class Keywords: NSObject {
 
+    /**
+        All the Keyword entries (keyword, importance, status)
+     */
     var entries = [
         ("long", 3, 0),
         ("short", 3, 0),
@@ -114,6 +118,13 @@ class Keywords: NSObject {
 
     ]
     
+    
+    /**
+        Changes the status of the keyword
+     
+        - Parameter tag: the tag (index) of the keyword
+        - Returns: 0 if status was 1; 1 if status was 0
+     */
     func changeStatus(tag: Int) -> Int {
         if (self.entries[tag].2 == 0) {
             self.entries[tag].2 = 1
